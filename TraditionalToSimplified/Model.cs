@@ -6,10 +6,15 @@ namespace TraditionalToSimplified
 {
     public class Model
     {
-        public class product
+        public class my_category_tw
         {
-            public int Id { get; set; }
-            public string ch { get; set; }
+            public string Category_ID { get; set; }
+            public string Category_Name_TW { get; set; }
+        }
+
+        public class Db
+        {
+            public string DbConnectString { get; set; }
         }
     }
 }
