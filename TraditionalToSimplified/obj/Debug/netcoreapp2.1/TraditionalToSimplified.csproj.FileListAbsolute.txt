@@ -2,10 +2,10 @@ D:\TraditionalToSimplified\TraditionalToSimplified\bin\Debug\netcoreapp2.1\Tradi
 D:\TraditionalToSimplified\TraditionalToSimplified\bin\Debug\netcoreapp2.1\TraditionalToSimplified.runtimeconfig.json
 D:\TraditionalToSimplified\TraditionalToSimplified\bin\Debug\netcoreapp2.1\TraditionalToSimplified.runtimeconfig.dev.json
 D:\TraditionalToSimplified\TraditionalToSimplified\bin\Debug\netcoreapp2.1\TraditionalToSimplified.dll
-D:\TraditionalToSimplified\TraditionalToSimplified\obj\Debug\netcoreapp2.1\TraditionalToSimplified.csprojAssemblyReference.cache
 D:\TraditionalToSimplified\TraditionalToSimplified\obj\Debug\netcoreapp2.1\TraditionalToSimplified.csproj.CoreCompileInputs.cache
 D:\TraditionalToSimplified\TraditionalToSimplified\obj\Debug\netcoreapp2.1\TraditionalToSimplified.AssemblyInfoInputs.cache
 D:\TraditionalToSimplified\TraditionalToSimplified\obj\Debug\netcoreapp2.1\TraditionalToSimplified.AssemblyInfo.cs
 D:\TraditionalToSimplified\TraditionalToSimplified\bin\Debug\netcoreapp2.1\TraditionalToSimplified.pdb
 D:\TraditionalToSimplified\TraditionalToSimplified\obj\Debug\netcoreapp2.1\TraditionalToSimplified.dll
 D:\TraditionalToSimplified\TraditionalToSimplified\obj\Debug\netcoreapp2.1\TraditionalToSimplified.pdb
+D:\TraditionalToSimplified\TraditionalToSimplified\obj\Debug\netcoreapp2.1\TraditionalToSimplified.csprojAssemblyReference.cache
