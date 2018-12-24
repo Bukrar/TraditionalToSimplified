@@ -5,4 +5,9 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.0.13" />
+    <PackageReference Include="TraditionalChineseToSimplifiedConverter" Version="1.0.0" />
+  </ItemGroup>
+
 </Project>
