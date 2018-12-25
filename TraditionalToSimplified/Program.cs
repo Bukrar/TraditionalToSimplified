@@ -47,14 +47,14 @@ namespace TraditionalToSimplified
                 }
             }
 
-            //db_Tw_Service.UpdateTableMy_Category_Tw(Db_Tw_SqlConnection);
-            //db_Tw_Service.UpdateTableMy_Country_Tw(Db_Tw_SqlConnection);
-            //db_Tw_Service.UpdateTableMy_Press_Tw(Db_Tw_SqlConnection);
-            //db_Tw_Service.UpdateTableMy_Product_Tw(Db_Tw_SqlConnection);
-            //db_Tw_Service.UpdateTableMy_Publisher_Tw(Db_Tw_SqlConnection);
-            //db_Tw_Service.UpdateTableMy_Region_Tw(Db_Tw_SqlConnection);
-            //db_Tw_Service.UpdateTableMy_Subtopic_Tw(Db_Tw_SqlConnection);
-            //db_Tw_Service.UpdateTableMy_Topic_Tw(Db_Tw_SqlConnection);
+            db_Tw_Service.UpdateTableMy_Category_Tw(Db_Tw_SqlConnection);
+            db_Tw_Service.UpdateTableMy_Country_Tw(Db_Tw_SqlConnection);
+            db_Tw_Service.UpdateTableMy_Press_Tw(Db_Tw_SqlConnection);
+            db_Tw_Service.UpdateTableMy_Product_Tw(Db_Tw_SqlConnection);
+            db_Tw_Service.UpdateTableMy_Publisher_Tw(Db_Tw_SqlConnection);
+            db_Tw_Service.UpdateTableMy_Region_Tw(Db_Tw_SqlConnection);
+            db_Tw_Service.UpdateTableMy_Subtopic_Tw(Db_Tw_SqlConnection);
+            db_Tw_Service.UpdateTableMy_Topic_Tw(Db_Tw_SqlConnection);
             Db_Tw_SqlConnection.Close();
 
             // 連線到DB_EVENT_TW資料庫

@@ -511,29 +511,38 @@ namespace TraditionalToSimplified
                     {
                         while (myData.Read())
                         {
-                            if (!(myData.IsDBNull(1) || myData.IsDBNull(2)))
+                            string pk = myData.GetString(0);
+                            string traditionalIntroContent, simplifiedIntroContent, simplifiedEncodeIntroContent = null;
+                            string traditionalNameContent, simplifiedNameContent, simplifiedEncodeNameContent = null;
+                            if (!myData.IsDBNull(1))
                             {
-                                string pk = myData.GetString(0);
-                                string traditionalIntroContent = HttpUtility.UrlDecode(myData.GetString(1), Encoding.GetEncoding("big5"));
-                                string simplifiedIntroContent = utility.ToSimplified(traditionalIntroContent, "ToSimplified");
-                                string simplifiedEncodeIntroContent = HttpUtility.UrlEncode(simplifiedIntroContent, Encoding.GetEncoding("gb18030"));
-
-                                string traditionalNameContent = HttpUtility.UrlDecode(myData.GetString(2), Encoding.GetEncoding("big5"));
-                                string simplifiedNameContent = utility.ToSimplified(traditionalNameContent, "ToSimplified");
-                                string simplifiedEncodeNameContent = HttpUtility.UrlEncode(simplifiedNameContent, Encoding.GetEncoding("gb18030"));
-
-                                Model.My_Topic_Tw modelData = new Model.My_Topic_Tw();
-                                modelData.Topic_ID = pk;
-                                modelData.Topic_Intro_TW = simplifiedEncodeIntroContent;
-                                modelData.Topic_Name_TW = simplifiedEncodeNameContent;
-                                modelList.Add(modelData);
+                                traditionalIntroContent = HttpUtility.UrlDecode(myData.GetString(1), Encoding.GetEncoding("big5"));
+                                simplifiedIntroContent = utility.ToSimplified(traditionalIntroContent, "ToSimplified");
+                                simplifiedEncodeIntroContent = HttpUtility.UrlEncode(simplifiedIntroContent, Encoding.GetEncoding("gb18030"));
                             }
                             else
                             {
                                 Console.WriteLine("DB:DB_TW TABLE: my_topic_tw 需轉換的欄位為NULL值的PK: " + myData.GetString(0));
                             }
-                        }
 
+                            if (myData.IsDBNull(1))
+                            {
+                                traditionalNameContent = HttpUtility.UrlDecode(myData.GetString(2), Encoding.GetEncoding("big5"));
+                                simplifiedNameContent = utility.ToSimplified(traditionalNameContent, "ToSimplified");
+                                simplifiedEncodeNameContent = HttpUtility.UrlEncode(simplifiedNameContent, Encoding.GetEncoding("gb18030"));
+                            }
+                            else
+                            {
+                                Console.WriteLine("DB:DB_TW TABLE: my_topic_tw 需轉換的欄位為NULL值的PK: " + myData.GetString(0));
+                            }
+                            Model.My_Topic_Tw modelData = new Model.My_Topic_Tw();
+                            modelData.Topic_ID = pk;
+                            modelData.Topic_Intro_TW = simplifiedEncodeIntroContent;
+                            modelData.Topic_Name_TW = simplifiedEncodeNameContent;
+                            modelList.Add(modelData); 
+                           
+                          
+                        }
                     }
                 }
 

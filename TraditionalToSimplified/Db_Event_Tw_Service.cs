@@ -56,7 +56,6 @@ namespace TraditionalToSimplified
                                 Console.WriteLine("DB:DB_EVENT_TW TABLE: my_event_category_tw 需轉換的欄位為NULL值的PK: " + myData.GetString(0));
                             }
                         }
-
                     }
                 }
 
@@ -107,37 +106,41 @@ namespace TraditionalToSimplified
                     {
                         while (myData.Read())
                         {
-                            if (!(myData.IsDBNull(1) || myData.IsDBNull(2)))
+                            string pk = myData.GetString(0);
+                            string traditionalTitleContent, simplifiedTitleContent, simplifiedEncodeTitleContent = null;
+                            string traditionalContent, simplifiedContent, simplifiedEncodeContent = null;
+                            if (!myData.IsDBNull(1))
                             {
-                                string pk = myData.GetString(0);
-
-                                string traditionalTitleContent = HttpUtility.UrlDecode(myData.GetString(1), Encoding.GetEncoding("big5"));
-                                string simplifiedTitleContent = utility.ToSimplified(traditionalTitleContent, "ToSimplified");
-                                string simplifiedEncodeTitleContent = HttpUtility.UrlEncode(simplifiedTitleContent, Encoding.GetEncoding("gb18030"));
-
-                                string traditionalContent = HttpUtility.UrlDecode(myData.GetString(2), Encoding.GetEncoding("big5"));
-                                string simplifiedContent = utility.ToSimplified(traditionalContent, "ToSimplified");
-                                string simplifiedEncodeContent = HttpUtility.UrlEncode(simplifiedContent, Encoding.GetEncoding("gb18030"));
-
-                                Model.My_Event_Press_Tw modelData = new Model.My_Event_Press_Tw();
-                                modelData.Press_SEQ = pk;
-                                modelData.Press_Title = simplifiedEncodeTitleContent;
-                                modelData.Press_Content = simplifiedEncodeContent;
-                                modelList.Add(modelData);
+                                traditionalTitleContent = HttpUtility.UrlDecode(myData.GetString(1), Encoding.GetEncoding("big5"));
+                                simplifiedTitleContent = utility.ToSimplified(traditionalTitleContent, "ToSimplified");
+                                simplifiedEncodeTitleContent = HttpUtility.UrlEncode(simplifiedTitleContent, Encoding.GetEncoding("gb18030"));
                             }
                             else
                             {
                                 Console.WriteLine("DB:DB_EVENT_TW TABLE: my_event_press_tw 需轉換的欄位為NULL值的PK: " + myData.GetString(0));
                             }
+                            if (!myData.IsDBNull(2))
+                            {
+                                traditionalContent = HttpUtility.UrlDecode(myData.GetString(2), Encoding.GetEncoding("big5"));
+                                simplifiedContent = utility.ToSimplified(traditionalContent, "ToSimplified");
+                                simplifiedEncodeContent = HttpUtility.UrlEncode(simplifiedContent, Encoding.GetEncoding("gb18030"));
+                            }
+                            else
+                            {
+                                Console.WriteLine("DB:DB_EVENT_TW TABLE: my_event_press_tw 需轉換的欄位為NULL值的PK: " + myData.GetString(0));
+                            }
+                            Model.My_Event_Press_Tw modelData = new Model.My_Event_Press_Tw();
+                            modelData.Press_SEQ = pk;
+                            modelData.Press_Title = simplifiedEncodeTitleContent;
+                            modelData.Press_Content = simplifiedEncodeContent;
+                            modelList.Add(modelData);
                         }
-
                     }
                 }
-
                 foreach (var s in modelList)
                 {
                     using (MySqlCommand UPDATmySqlCommand =
-                        new MySqlCommand("update db_event_tw.my_event_press_tw set Press_Title='" + s.Press_Title 
+                        new MySqlCommand("update db_event_tw.my_event_press_tw set Press_Title='" + s.Press_Title
                                          + "', Press_Content='" + s.Press_Content +
                                          "' WHERE Press_SEQ ='" + s.Press_SEQ + "'", mySqlConnection))
                     {
@@ -198,7 +201,6 @@ namespace TraditionalToSimplified
                                 Console.WriteLine("DB:DB_EVENT_TW TABLE: my_event_region_tw 需轉換的欄位為NULL值的PK: " + myData.GetString(0));
                             }
                         }
-
                     }
                 }
 
@@ -249,30 +251,35 @@ namespace TraditionalToSimplified
                     {
                         while (myData.Read())
                         {
-                            if (!(myData.IsDBNull(1) || myData.IsDBNull(2)))
+                            string pk = myData.GetString(0);
+                            string traditionalNameContent, simplifiedNameContent, simplifiedEncodeNameContent = null;
+                            string traditionalTitleContent, simplifiedTitleContent, simplifiedEncodeTitleContent = null;
+                            if (!myData.IsDBNull(1))
                             {
-                                string pk = myData.GetString(0);
-   
-                                string traditionalNameContent = HttpUtility.UrlDecode(myData.GetString(1), Encoding.GetEncoding("big5"));
-                                string simplifiedNameContent = utility.ToSimplified(traditionalNameContent, "ToSimplified");
-                                string simplifiedEncodeNameContent = HttpUtility.UrlEncode(simplifiedNameContent, Encoding.GetEncoding("gb18030"));
-
-                                string traditionalTitleContent = HttpUtility.UrlDecode(myData.GetString(2), Encoding.GetEncoding("big5"));
-                                string simplifiedTitleContent = utility.ToSimplified(traditionalTitleContent, "ToSimplified");
-                                string simplifiedEncodeTitleContent = HttpUtility.UrlEncode(simplifiedTitleContent, Encoding.GetEncoding("gb18030"));
-
-                                Model.My_Partnar_Category_Tw modelData = new Model.My_Partnar_Category_Tw();
-                                modelData.Code = pk;
-                                modelData.Name = simplifiedEncodeNameContent;
-                                modelData.Title = simplifiedEncodeTitleContent;
-                                modelList.Add(modelData);
+                                traditionalNameContent = HttpUtility.UrlDecode(myData.GetString(1), Encoding.GetEncoding("big5"));
+                                simplifiedNameContent = utility.ToSimplified(traditionalNameContent, "ToSimplified");
+                                simplifiedEncodeNameContent = HttpUtility.UrlEncode(simplifiedNameContent, Encoding.GetEncoding("gb18030"));
                             }
                             else
                             {
                                 Console.WriteLine("DB:DB_EVENT_TW TABLE: my_partnar_category_tw 需轉換的欄位為NULL值的PK: " + myData.GetString(0));
                             }
+                            if (myData.IsDBNull(2))
+                            {
+                                traditionalTitleContent = HttpUtility.UrlDecode(myData.GetString(2), Encoding.GetEncoding("big5"));
+                                simplifiedTitleContent = utility.ToSimplified(traditionalTitleContent, "ToSimplified");
+                                simplifiedEncodeTitleContent = HttpUtility.UrlEncode(simplifiedTitleContent, Encoding.GetEncoding("gb18030"));
+                            }
+                            else
+                            {
+                                Console.WriteLine("DB:DB_EVENT_TW TABLE: my_partnar_category_tw 需轉換的欄位為NULL值的PK: " + myData.GetString(0));
+                            }
+                            Model.My_Partnar_Category_Tw modelData = new Model.My_Partnar_Category_Tw();
+                            modelData.Code = pk;
+                            modelData.Name = simplifiedEncodeNameContent;
+                            modelData.Title = simplifiedEncodeTitleContent;
+                            modelList.Add(modelData);
                         }
-
                     }
                 }
 
