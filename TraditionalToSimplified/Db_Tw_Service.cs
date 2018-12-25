@@ -11,7 +11,7 @@ namespace TraditionalToSimplified
     public class Db_Tw_Service
     {
         Utility utility = new Utility();
-        public void UpdateTableMy_Category_Tw(MySqlConnection mySqlConnection)
+        public void UpdateTableMy_Category_Tw()
         {
             //呼叫json資源
             var builder = new ConfigurationBuilder()
@@ -21,14 +21,33 @@ namespace TraditionalToSimplified
 
             List<Model.My_Category_Tw> modelList = new List<Model.My_Category_Tw>();
 
-            //DB資料DECODE 繁體=>簡體 在ENCODE編碼在更新資料庫
+            //連接繁體資料庫
+            MySqlConnection Db_Tw_SqlConnection = new MySqlConnection(configuration.GetSection("db:0:connectString").Value);
+            try
+            {
+                Db_Tw_SqlConnection.Open();
+            }
+            catch (MySqlException ex)
+            {
+                switch (ex.Number)
+                {
+                    case 1045:
+                        Console.WriteLine("使用者帳號或密碼錯誤");
+                        break;
+                    default:
+                        Console.WriteLine("無法連線到資料庫.");
+                        break;
+                }
+            }
+
+            //DB資料DECODE 繁體=>簡體 再把簡體ENCODE
             try
             {
                 using (MySqlCommand mySqlCommand =
                     new MySqlCommand("SELECT " + configuration.GetSection("db:0:tables:my_category_tw:0").Value
                                                + "," + configuration.GetSection("db:0:tables:my_category_tw:1").Value
                                                + " FROM " + configuration.GetSection("db:0:dbname").Value + "." +
-                                               configuration.GetSection("db:0:tables:my_category_tw").Key, mySqlConnection))
+                                               configuration.GetSection("db:0:tables:my_category_tw").Key, Db_Tw_SqlConnection))
                 {
                     MySqlDataReader myData = mySqlCommand.ExecuteReader();
                     if (!myData.HasRows)
@@ -59,18 +78,42 @@ namespace TraditionalToSimplified
 
                     }
                 }
+                Db_Tw_SqlConnection.Close();
 
+                //連接簡體資料庫
+                MySqlConnection Db_Cn_SqlConnection = new MySqlConnection(configuration.GetSection("db:2:connectString").Value);
+                try
+                {
+                    Db_Cn_SqlConnection.Open();
+                }
+                catch (MySqlException ex)
+                {
+                    switch (ex.Number)
+                    {
+                        case 1045:
+                            Console.WriteLine("使用者帳號或密碼錯誤");
+                            break;
+                        default:
+                            Console.WriteLine("無法連線到資料庫.");
+                            break;
+                    }
+                }
+                //修改簡體資料庫              
                 foreach (var s in modelList)
                 {
                     using (MySqlCommand UPDATmySqlCommand =
-                        new MySqlCommand("update db_tw.my_category_tw set Category_Name_TW='" + s.Category_Name_TW +
-                                         "' WHERE Category_ID ='" + s.Category_ID + "'", mySqlConnection))
+                        new MySqlCommand("update " + configuration.GetSection("db:2:dbname").Value +
+                                         "." + configuration.GetSection("db:2:tables:my_category_tw").Key +
+                                         " set " + configuration.GetSection("db:2:tables:my_category_tw:1").Value +
+                                         "='" + s.Category_Name_TW +
+                                         "' WHERE " + configuration.GetSection("db:2:tables:my_category_tw:0").Value +
+                                         "='" + s.Category_ID + "'", Db_Cn_SqlConnection))
                     {
                         UPDATmySqlCommand.ExecuteNonQuery();
-                        // Console.WriteLine("處理KEY: " + s.Category_ID + " : " + s.Category_Name_TW);
                     }
                 }
-                Console.WriteLine("DB:DB_TW TABLE: my_category_tw 資料處理完成");
+                Db_Cn_SqlConnection.Close();
+                Console.WriteLine("DB:DB_CN TABLE: my_category_tw 資料處理完成");
             }
             catch (MySqlException ex)
             {
@@ -78,7 +121,7 @@ namespace TraditionalToSimplified
             }
         }
 
-        public void UpdateTableMy_Country_Tw(MySqlConnection mySqlConnection)
+        public void UpdateTableMy_Country_Tw()
         {
             //呼叫json資源
             var builder = new ConfigurationBuilder()
@@ -89,6 +132,24 @@ namespace TraditionalToSimplified
             //建構子
             List<Model.My_Country_Tw> modelList = new List<Model.My_Country_Tw>();
 
+            //連接繁體資料庫
+            MySqlConnection Db_Tw_SqlConnection = new MySqlConnection(configuration.GetSection("db:0:connectString").Value);
+            try
+            {
+                Db_Tw_SqlConnection.Open();
+            }
+            catch (MySqlException ex)
+            {
+                switch (ex.Number)
+                {
+                    case 1045:
+                        Console.WriteLine("使用者帳號或密碼錯誤");
+                        break;
+                    default:
+                        Console.WriteLine("無法連線到資料庫.");
+                        break;
+                }
+            }
             //DB資料DECODE 繁體=>簡體 在ENCODE編碼在更新資料庫
             try
             {
@@ -96,7 +157,7 @@ namespace TraditionalToSimplified
                     new MySqlCommand("SELECT " + configuration.GetSection("db:0:tables:my_country_tw:0").Value
                                                + "," + configuration.GetSection("db:0:tables:my_country_tw:1").Value
                                                + " FROM " + configuration.GetSection("db:0:dbname").Value + "." +
-                                               configuration.GetSection("db:0:tables:my_country_tw").Key, mySqlConnection))
+                                               configuration.GetSection("db:0:tables:my_country_tw").Key, Db_Tw_SqlConnection))
                 {
                     MySqlDataReader myData = mySqlCommand.ExecuteReader();
                     if (!myData.HasRows)
@@ -124,21 +185,44 @@ namespace TraditionalToSimplified
                                 Console.WriteLine("DB:DB_TW TABLE: my_country_tw 需轉換的欄位為NULL值的PK: " + myData.GetString(0));
                             }
                         }
-
                     }
                 }
 
+                Db_Tw_SqlConnection.Close();
+                //連接簡體資料庫
+                MySqlConnection Db_Cn_SqlConnection = new MySqlConnection(configuration.GetSection("db:2:connectString").Value);
+                try
+                {
+                    Db_Cn_SqlConnection.Open();
+                }
+                catch (MySqlException ex)
+                {
+                    switch (ex.Number)
+                    {
+                        case 1045:
+                            Console.WriteLine("使用者帳號或密碼錯誤");
+                            break;
+                        default:
+                            Console.WriteLine("無法連線到資料庫.");
+                            break;
+                    }
+                }
+                //修改簡體資料庫  
                 foreach (var s in modelList)
                 {
                     using (MySqlCommand UPDATmySqlCommand =
-                        new MySqlCommand("update db_tw.my_country_tw set Country_Name_TW='" + s.Country_Name_TW +
-                                         "' WHERE Country_ID ='" + s.Country_ID + "'", mySqlConnection))
+                        new MySqlCommand("update " + configuration.GetSection("db:2:dbname").Value +
+                                         "." + configuration.GetSection("db:2:tables:my_country_tw").Key +
+                                         " set " + configuration.GetSection("db:2:tables:my_country_tw:1").Value +
+                                         "='" + s.Country_Name_TW +
+                                         "' WHERE " + configuration.GetSection("db:2:tables:my_country_tw:0").Value +
+                                         "='" + s.Country_ID + "'", Db_Cn_SqlConnection))
                     {
                         UPDATmySqlCommand.ExecuteNonQuery();
-                        //Console.WriteLine("處理KEY: " + s.Country_ID + " : " + s.Country_Name_TW);
                     }
                 }
-                Console.WriteLine("DB:DB_TW TABLE: my_country_tw 資料處理完成");
+                Db_Cn_SqlConnection.Close();
+                Console.WriteLine("DB:DB_CN TABLE: my_country_tw 資料處理完成");
             }
             catch (MySqlException ex)
             {
@@ -146,7 +230,7 @@ namespace TraditionalToSimplified
             }
         }
 
-        public void UpdateTableMy_Press_Tw(MySqlConnection mySqlConnection)
+        public void UpdateTableMy_Press_Tw()
         {
             //呼叫json資源
             var builder = new ConfigurationBuilder()
@@ -156,6 +240,24 @@ namespace TraditionalToSimplified
 
             List<Model.My_Press_Tw> modelList = new List<Model.My_Press_Tw>();
 
+            //連接繁體資料庫
+            MySqlConnection Db_Tw_SqlConnection = new MySqlConnection(configuration.GetSection("db:0:connectString").Value);
+            try
+            {
+                Db_Tw_SqlConnection.Open();
+            }
+            catch (MySqlException ex)
+            {
+                switch (ex.Number)
+                {
+                    case 1045:
+                        Console.WriteLine("使用者帳號或密碼錯誤");
+                        break;
+                    default:
+                        Console.WriteLine("無法連線到資料庫.");
+                        break;
+                }
+            }
             //DB資料DECODE 繁體=>簡體 在ENCODE編碼在更新資料庫
             try
             {
@@ -163,7 +265,7 @@ namespace TraditionalToSimplified
                     new MySqlCommand("SELECT " + configuration.GetSection("db:0:tables:my_press_tw:0").Value
                                                + "," + configuration.GetSection("db:0:tables:my_press_tw:1").Value
                                                + " FROM " + configuration.GetSection("db:0:dbname").Value + "." +
-                                               configuration.GetSection("db:0:tables:my_press_tw").Key, mySqlConnection))
+                                               configuration.GetSection("db:0:tables:my_press_tw").Key, Db_Tw_SqlConnection))
                 {
                     MySqlDataReader myData = mySqlCommand.ExecuteReader();
                     if (!myData.HasRows)
@@ -191,21 +293,44 @@ namespace TraditionalToSimplified
                                 Console.WriteLine("DB:DB_TW TABLE: my_press_tw 需轉換的欄位為NULL值的PK: " + myData.GetString(0));
                             }
                         }
+                    }
+                }
 
+                Db_Tw_SqlConnection.Close();
+                //連接簡體資料庫
+                MySqlConnection Db_Cn_SqlConnection = new MySqlConnection(configuration.GetSection("db:2:connectString").Value);
+                try
+                {
+                    Db_Cn_SqlConnection.Open();
+                }
+                catch (MySqlException ex)
+                {
+                    switch (ex.Number)
+                    {
+                        case 1045:
+                            Console.WriteLine("使用者帳號或密碼錯誤");
+                            break;
+                        default:
+                            Console.WriteLine("無法連線到資料庫.");
+                            break;
                     }
                 }
 
                 foreach (var s in modelList)
                 {
                     using (MySqlCommand UPDATmySqlCommand =
-                        new MySqlCommand("update db_tw.my_press_tw set Press_Title='" + s.Press_Title +
-                                         "' WHERE Press_SEQ ='" + s.Press_SEQ + "'", mySqlConnection))
+                        new MySqlCommand("update " + configuration.GetSection("db:2:dbname").Value +
+                                         "." + configuration.GetSection("db:2:tables:my_press_tw").Key +
+                                         " set " + configuration.GetSection("db:2:tables:my_press_tw:1").Value +
+                                         "='" + s.Press_Title +
+                                         "' WHERE " + configuration.GetSection("db:2:tables:my_press_tw:0").Value +
+                                         "='" + s.Press_SEQ + "'", Db_Cn_SqlConnection))
                     {
                         UPDATmySqlCommand.ExecuteNonQuery();
-                        // Console.WriteLine("處理KEY: " + s.Press_SEQ + " : " + s.Press_Title);
                     }
                 }
-                Console.WriteLine("DB:DB_TW TABLE: my_press_tw 資料處理完成");
+                Db_Cn_SqlConnection.Close();
+                Console.WriteLine("DB:DB_CN TABLE: my_press_tw 資料處理完成");
             }
             catch (MySqlException ex)
             {
@@ -213,7 +338,7 @@ namespace TraditionalToSimplified
             }
         }
 
-        public void UpdateTableMy_Product_Tw(MySqlConnection mySqlConnection)
+        public void UpdateTableMy_Product_Tw()
         {
             //呼叫json資源
             var builder = new ConfigurationBuilder()
@@ -223,6 +348,24 @@ namespace TraditionalToSimplified
 
             List<Model.My_Product_Tw> modelList = new List<Model.My_Product_Tw>();
 
+            //連接繁體資料庫
+            MySqlConnection Db_Tw_SqlConnection = new MySqlConnection(configuration.GetSection("db:0:connectString").Value);
+            try
+            {
+                Db_Tw_SqlConnection.Open();
+            }
+            catch (MySqlException ex)
+            {
+                switch (ex.Number)
+                {
+                    case 1045:
+                        Console.WriteLine("使用者帳號或密碼錯誤");
+                        break;
+                    default:
+                        Console.WriteLine("無法連線到資料庫.");
+                        break;
+                }
+            }
             //DB資料DECODE 繁體=>簡體 在ENCODE編碼在更新資料庫
             try
             {
@@ -230,7 +373,7 @@ namespace TraditionalToSimplified
                     new MySqlCommand("SELECT " + configuration.GetSection("db:0:tables:my_product_tw:0").Value
                                                + "," + configuration.GetSection("db:0:tables:my_product_tw:1").Value
                                                + " FROM " + configuration.GetSection("db:0:dbname").Value + "." +
-                                               configuration.GetSection("db:0:tables:my_product_tw").Key, mySqlConnection))
+                                               configuration.GetSection("db:0:tables:my_product_tw").Key, Db_Tw_SqlConnection))
                 {
                     MySqlDataReader myData = mySqlCommand.ExecuteReader();
                     if (!myData.HasRows)
@@ -258,21 +401,44 @@ namespace TraditionalToSimplified
                                 Console.WriteLine("DB:DB_TW TABLE: my_product_tw 需轉換的欄位為NULL值的PK: " + myData.GetString(0));
                             }
                         }
+                    }
+                }
 
+                Db_Tw_SqlConnection.Close();
+                //連接簡體資料庫
+                MySqlConnection Db_Cn_SqlConnection = new MySqlConnection(configuration.GetSection("db:2:connectString").Value);
+                try
+                {
+                    Db_Cn_SqlConnection.Open();
+                }
+                catch (MySqlException ex)
+                {
+                    switch (ex.Number)
+                    {
+                        case 1045:
+                            Console.WriteLine("使用者帳號或密碼錯誤");
+                            break;
+                        default:
+                            Console.WriteLine("無法連線到資料庫.");
+                            break;
                     }
                 }
 
                 foreach (var s in modelList)
                 {
                     using (MySqlCommand UPDATmySqlCommand =
-                        new MySqlCommand("update db_tw.my_product_tw set Prod_Title_TW='" + s.Prod_Title_TW +
-                                         "' WHERE Prod_ID ='" + s.Prod_ID + "'", mySqlConnection))
+                       new MySqlCommand("update " + configuration.GetSection("db:2:dbname").Value +
+                                         "." + configuration.GetSection("db:2:tables:my_product_tw").Key +
+                                         " set " + configuration.GetSection("db:2:tables:my_product_tw:1").Value +
+                                         "='" + s.Prod_Title_TW +
+                                         "' WHERE " + configuration.GetSection("db:2:tables:my_product_tw:0").Value +
+                                         "='" + s.Prod_ID + "'", Db_Cn_SqlConnection))
                     {
                         UPDATmySqlCommand.ExecuteNonQuery();
-                        // Console.WriteLine("處理KEY: " + s.Prod_ID + " : " + s.Prod_Title_TW);
                     }
                 }
-                Console.WriteLine("DB:DB_TW TABLE: my_product_tw 資料處理完成");
+                Db_Cn_SqlConnection.Close();
+                Console.WriteLine("DB:DB_CN TABLE: my_product_tw 資料處理完成");
             }
             catch (MySqlException ex)
             {
@@ -280,7 +446,7 @@ namespace TraditionalToSimplified
             }
         }
 
-        public void UpdateTableMy_Publisher_Tw(MySqlConnection mySqlConnection)
+        public void UpdateTableMy_Publisher_Tw()
         {
             //呼叫json資源
             var builder = new ConfigurationBuilder()
@@ -290,6 +456,25 @@ namespace TraditionalToSimplified
 
             List<Model.My_Publisher_Tw> modelList = new List<Model.My_Publisher_Tw>();
 
+            //連接繁體資料庫
+            MySqlConnection Db_Tw_SqlConnection = new MySqlConnection(configuration.GetSection("db:0:connectString").Value);
+            try
+            {
+                Db_Tw_SqlConnection.Open();
+            }
+            catch (MySqlException ex)
+            {
+                switch (ex.Number)
+                {
+                    case 1045:
+                        Console.WriteLine("使用者帳號或密碼錯誤");
+                        break;
+                    default:
+                        Console.WriteLine("無法連線到資料庫.");
+                        break;
+                }
+            }
+
             //DB資料DECODE 繁體=>簡體 在ENCODE編碼在更新資料庫
             try
             {
@@ -297,7 +482,7 @@ namespace TraditionalToSimplified
                     new MySqlCommand("SELECT " + configuration.GetSection("db:0:tables:my_publisher_tw:0").Value
                                                + "," + configuration.GetSection("db:0:tables:my_publisher_tw:1").Value
                                                + " FROM " + configuration.GetSection("db:0:dbname").Value + "." +
-                                               configuration.GetSection("db:0:tables:my_publisher_tw").Key, mySqlConnection))
+                                               configuration.GetSection("db:0:tables:my_publisher_tw").Key, Db_Tw_SqlConnection))
                 {
                     MySqlDataReader myData = mySqlCommand.ExecuteReader();
                     if (!myData.HasRows)
@@ -326,21 +511,44 @@ namespace TraditionalToSimplified
                                 Console.WriteLine("DB:DB_TW TABLE: my_publisher_tw 需轉換的欄位為NULL值的PK: " + myData.GetString(0));
                             }
                         }
+                    }
+                }
 
+                Db_Tw_SqlConnection.Close();
+                //連接簡體資料庫
+                MySqlConnection Db_Cn_SqlConnection = new MySqlConnection(configuration.GetSection("db:2:connectString").Value);
+                try
+                {
+                    Db_Cn_SqlConnection.Open();
+                }
+                catch (MySqlException ex)
+                {
+                    switch (ex.Number)
+                    {
+                        case 1045:
+                            Console.WriteLine("使用者帳號或密碼錯誤");
+                            break;
+                        default:
+                            Console.WriteLine("無法連線到資料庫.");
+                            break;
                     }
                 }
 
                 foreach (var s in modelList)
                 {
                     using (MySqlCommand UPDATmySqlCommand =
-                        new MySqlCommand("update db_tw.my_publisher_tw set Pub_Intro_TW='" + s.Pub_Intro_TW +
-                                         "' WHERE Pub_ID ='" + s.Pub_ID + "'", mySqlConnection))
+                         new MySqlCommand("update " + configuration.GetSection("db:2:dbname").Value +
+                                         "." + configuration.GetSection("db:2:tables:my_publisher_tw").Key +
+                                         " set " + configuration.GetSection("db:2:tables:my_publisher_tw:1").Value +
+                                         "='" + s.Pub_Intro_TW +
+                                         "' WHERE " + configuration.GetSection("db:2:tables:my_publisher_tw:0").Value +
+                                         "='" + s.Pub_ID + "'", Db_Cn_SqlConnection))
                     {
                         UPDATmySqlCommand.ExecuteNonQuery();
-                        //Console.WriteLine("處理KEY: " + s.Pub_ID + " : " + s.Pub_Intro_TW);
                     }
                 }
-                Console.WriteLine("DB:DB_TW TABLE: my_publisher_tw 資料處理完成");
+                Db_Cn_SqlConnection.Close();
+                Console.WriteLine("DB:DB_CN TABLE: my_publisher_tw 資料處理完成");
             }
             catch (MySqlException ex)
             {
@@ -348,7 +556,7 @@ namespace TraditionalToSimplified
             }
         }
 
-        public void UpdateTableMy_Region_Tw(MySqlConnection mySqlConnection)
+        public void UpdateTableMy_Region_Tw()
         {
             //呼叫json資源
             var builder = new ConfigurationBuilder()
@@ -358,6 +566,25 @@ namespace TraditionalToSimplified
 
             List<Model.My_Region_Tw> modelList = new List<Model.My_Region_Tw>();
 
+            //連接繁體資料庫
+            MySqlConnection Db_Tw_SqlConnection = new MySqlConnection(configuration.GetSection("db:0:connectString").Value);
+            try
+            {
+                Db_Tw_SqlConnection.Open();
+            }
+            catch (MySqlException ex)
+            {
+                switch (ex.Number)
+                {
+                    case 1045:
+                        Console.WriteLine("使用者帳號或密碼錯誤");
+                        break;
+                    default:
+                        Console.WriteLine("無法連線到資料庫.");
+                        break;
+                }
+            }
+
             //DB資料DECODE 繁體=>簡體 在ENCODE編碼在更新資料庫
             try
             {
@@ -365,7 +592,7 @@ namespace TraditionalToSimplified
                     new MySqlCommand("SELECT " + configuration.GetSection("db:0:tables:my_region_tw:0").Value
                                                + "," + configuration.GetSection("db:0:tables:my_region_tw:1").Value
                                                + " FROM " + configuration.GetSection("db:0:dbname").Value + "." +
-                                               configuration.GetSection("db:0:tables:my_region_tw").Key, mySqlConnection))
+                                               configuration.GetSection("db:0:tables:my_region_tw").Key, Db_Tw_SqlConnection))
                 {
                     MySqlDataReader myData = mySqlCommand.ExecuteReader();
                     if (!myData.HasRows)
@@ -393,21 +620,44 @@ namespace TraditionalToSimplified
                                 Console.WriteLine("DB:DB_TW TABLE: my_region_tw 需轉換的欄位為NULL值的PK: " + myData.GetString(0));
                             }
                         }
+                    }
+                }
 
+                Db_Tw_SqlConnection.Close();
+                //連接簡體資料庫
+                MySqlConnection Db_Cn_SqlConnection = new MySqlConnection(configuration.GetSection("db:2:connectString").Value);
+                try
+                {
+                    Db_Cn_SqlConnection.Open();
+                }
+                catch (MySqlException ex)
+                {
+                    switch (ex.Number)
+                    {
+                        case 1045:
+                            Console.WriteLine("使用者帳號或密碼錯誤");
+                            break;
+                        default:
+                            Console.WriteLine("無法連線到資料庫.");
+                            break;
                     }
                 }
 
                 foreach (var s in modelList)
                 {
                     using (MySqlCommand UPDATmySqlCommand =
-                        new MySqlCommand("update db_tw.my_region_tw set Region_Name_TW='" + s.Region_Name_TW +
-                                         "' WHERE Region_ID ='" + s.Region_ID + "'", mySqlConnection))
+                           new MySqlCommand("update " + configuration.GetSection("db:2:dbname").Value +
+                                         "." + configuration.GetSection("db:2:tables:my_region_tw").Key +
+                                         " set " + configuration.GetSection("db:2:tables:my_region_tw:1").Value +
+                                         "='" + s.Region_Name_TW +
+                                         "' WHERE " + configuration.GetSection("db:2:tables:my_region_tw:0").Value +
+                                         "='" + s.Region_ID + "'", Db_Cn_SqlConnection))
                     {
                         UPDATmySqlCommand.ExecuteNonQuery();
-                        //Console.WriteLine("處理KEY: " + s.Region_ID + " : " + s.Region_Name_TW);
                     }
                 }
-                Console.WriteLine("DB:DB_TW TABLE: my_region_tw 資料處理完成");
+                Db_Cn_SqlConnection.Close();
+                Console.WriteLine("DB:DB_CN TABLE: my_region_tw 資料處理完成");
             }
             catch (MySqlException ex)
             {
@@ -415,7 +665,7 @@ namespace TraditionalToSimplified
             }
         }
 
-        public void UpdateTableMy_Subtopic_Tw(MySqlConnection mySqlConnection)
+        public void UpdateTableMy_Subtopic_Tw()
         {
             //呼叫json資源
             var builder = new ConfigurationBuilder()
@@ -425,6 +675,25 @@ namespace TraditionalToSimplified
 
             List<Model.My_Subtopic_Tw> modelList = new List<Model.My_Subtopic_Tw>();
 
+            //連接繁體資料庫
+            MySqlConnection Db_Tw_SqlConnection = new MySqlConnection(configuration.GetSection("db:0:connectString").Value);
+            try
+            {
+                Db_Tw_SqlConnection.Open();
+            }
+            catch (MySqlException ex)
+            {
+                switch (ex.Number)
+                {
+                    case 1045:
+                        Console.WriteLine("使用者帳號或密碼錯誤");
+                        break;
+                    default:
+                        Console.WriteLine("無法連線到資料庫.");
+                        break;
+                }
+            }
+
             //DB資料DECODE 繁體=>簡體 在ENCODE編碼在更新資料庫
             try
             {
@@ -432,7 +701,7 @@ namespace TraditionalToSimplified
                     new MySqlCommand("SELECT " + configuration.GetSection("db:0:tables:my_subtopic_tw:0").Value
                                                + "," + configuration.GetSection("db:0:tables:my_subtopic_tw:1").Value
                                                + " FROM " + configuration.GetSection("db:0:dbname").Value + "." +
-                                               configuration.GetSection("db:0:tables:my_subtopic_tw").Key, mySqlConnection))
+                                               configuration.GetSection("db:0:tables:my_subtopic_tw").Key, Db_Tw_SqlConnection))
                 {
                     MySqlDataReader myData = mySqlCommand.ExecuteReader();
                     if (!myData.HasRows)
@@ -460,21 +729,44 @@ namespace TraditionalToSimplified
                                 Console.WriteLine("DB:DB_TW TABLE: my_subtopic_tw 需轉換的欄位為NULL值的PK: " + myData.GetString(0));
                             }
                         }
+                    }
+                }
 
+                Db_Tw_SqlConnection.Close();
+                //連接簡體資料庫
+                MySqlConnection Db_Cn_SqlConnection = new MySqlConnection(configuration.GetSection("db:2:connectString").Value);
+                try
+                {
+                    Db_Cn_SqlConnection.Open();
+                }
+                catch (MySqlException ex)
+                {
+                    switch (ex.Number)
+                    {
+                        case 1045:
+                            Console.WriteLine("使用者帳號或密碼錯誤");
+                            break;
+                        default:
+                            Console.WriteLine("無法連線到資料庫.");
+                            break;
                     }
                 }
 
                 foreach (var s in modelList)
                 {
                     using (MySqlCommand UPDATmySqlCommand =
-                        new MySqlCommand("update db_tw.my_subtopic_tw set SubTopic_Name_TW='" + s.SubTopic_Name_TW +
-                                         "' WHERE SubTopic_ID ='" + s.SubTopic_ID + "'", mySqlConnection))
+                        new MySqlCommand("update " + configuration.GetSection("db:2:dbname").Value +
+                                         "." + configuration.GetSection("db:2:tables:my_subtopic_tw").Key +
+                                         " set " + configuration.GetSection("db:2:tables:my_subtopic_tw:1").Value +
+                                         "='" + s.SubTopic_Name_TW +
+                                         "' WHERE " + configuration.GetSection("db:2:tables:my_subtopic_tw:0").Value +
+                                         "='" + s.SubTopic_ID + "'", Db_Cn_SqlConnection))
                     {
                         UPDATmySqlCommand.ExecuteNonQuery();
-                        //Console.WriteLine("處理KEY: " + s.SubTopic_ID + " : " + s.SubTopic_Name_TW);
                     }
                 }
-                Console.WriteLine("DB:DB_TW TABLE: my_subtopic_tw 資料處理完成");
+                Db_Cn_SqlConnection.Close();
+                Console.WriteLine("DB:DB_CN TABLE: my_subtopic_tw 資料處理完成");
             }
             catch (MySqlException ex)
             {
@@ -482,7 +774,7 @@ namespace TraditionalToSimplified
             }
         }
 
-        public void UpdateTableMy_Topic_Tw(MySqlConnection mySqlConnection)
+        public void UpdateTableMy_Topic_Tw()
         {
             //呼叫json資源
             var builder = new ConfigurationBuilder()
@@ -492,6 +784,25 @@ namespace TraditionalToSimplified
 
             List<Model.My_Topic_Tw> modelList = new List<Model.My_Topic_Tw>();
 
+            //連接繁體資料庫
+            MySqlConnection Db_Tw_SqlConnection = new MySqlConnection(configuration.GetSection("db:0:connectString").Value);
+            try
+            {
+                Db_Tw_SqlConnection.Open();
+            }
+            catch (MySqlException ex)
+            {
+                switch (ex.Number)
+                {
+                    case 1045:
+                        Console.WriteLine("使用者帳號或密碼錯誤");
+                        break;
+                    default:
+                        Console.WriteLine("無法連線到資料庫.");
+                        break;
+                }
+            }
+
             //DB資料DECODE 繁體=>簡體 在ENCODE編碼在更新資料庫
             try
             {
@@ -500,7 +811,7 @@ namespace TraditionalToSimplified
                                                + "," + configuration.GetSection("db:0:tables:my_topic_tw:1").Value
                                                + "," + configuration.GetSection("db:0:tables:my_topic_tw:2").Value
                                                + " FROM " + configuration.GetSection("db:0:dbname").Value + "." +
-                                               configuration.GetSection("db:0:tables:my_topic_tw").Key, mySqlConnection))
+                                               configuration.GetSection("db:0:tables:my_topic_tw").Key, Db_Tw_SqlConnection))
                 {
                     MySqlDataReader myData = mySqlCommand.ExecuteReader();
                     if (!myData.HasRows)
@@ -525,7 +836,7 @@ namespace TraditionalToSimplified
                                 Console.WriteLine("DB:DB_TW TABLE: my_topic_tw 需轉換的欄位為NULL值的PK: " + myData.GetString(0));
                             }
 
-                            if (myData.IsDBNull(1))
+                            if (!myData.IsDBNull(2))
                             {
                                 traditionalNameContent = HttpUtility.UrlDecode(myData.GetString(2), Encoding.GetEncoding("big5"));
                                 simplifiedNameContent = utility.ToSimplified(traditionalNameContent, "ToSimplified");
@@ -539,25 +850,48 @@ namespace TraditionalToSimplified
                             modelData.Topic_ID = pk;
                             modelData.Topic_Intro_TW = simplifiedEncodeIntroContent;
                             modelData.Topic_Name_TW = simplifiedEncodeNameContent;
-                            modelList.Add(modelData); 
-                           
-                          
+                            modelList.Add(modelData);
                         }
+                    }
+                }
+
+                Db_Tw_SqlConnection.Close();
+                //連接簡體資料庫
+                MySqlConnection Db_Cn_SqlConnection = new MySqlConnection(configuration.GetSection("db:2:connectString").Value);
+                try
+                {
+                    Db_Cn_SqlConnection.Open();
+                }
+                catch (MySqlException ex)
+                {
+                    switch (ex.Number)
+                    {
+                        case 1045:
+                            Console.WriteLine("使用者帳號或密碼錯誤");
+                            break;
+                        default:
+                            Console.WriteLine("無法連線到資料庫.");
+                            break;
                     }
                 }
 
                 foreach (var s in modelList)
                 {
                     using (MySqlCommand UPDATmySqlCommand =
-                        new MySqlCommand("update db_tw.my_topic_tw set Topic_Intro_TW='" + s.Topic_Intro_TW
-                                        + "', Topic_Name_TW='" + s.Topic_Name_TW +
-                                         "' WHERE Topic_ID ='" + s.Topic_ID + "'", mySqlConnection))
+                         new MySqlCommand("update " + configuration.GetSection("db:2:dbname").Value +
+                                         "." + configuration.GetSection("db:2:tables:my_topic_tw").Key +
+                                         " set " + configuration.GetSection("db:2:tables:my_topic_tw:1").Value +
+                                         "='" + s.Topic_Intro_TW +
+                                         "',"+ configuration.GetSection("db:2:tables:my_topic_tw:2").Value +
+                                         "='" + s.Topic_Name_TW +
+                                         " 'WHERE " + configuration.GetSection("db:2:tables:my_topic_tw:0").Value +
+                                         "='" + s.Topic_ID + "'", Db_Cn_SqlConnection))
                     {
                         UPDATmySqlCommand.ExecuteNonQuery();
-                        // Console.WriteLine("處理KEY: " + s.Topic_ID + " : " + s.Topic_Intro_TW);
                     }
                 }
-                Console.WriteLine("DB:DB_TW TABLE: my_subtopic_tw 資料處理完成");
+                Db_Cn_SqlConnection.Close();
+                Console.WriteLine("DB:DB_CN TABLE: my_subtopic_tw 資料處理完成");
             }
             catch (MySqlException ex)
             {

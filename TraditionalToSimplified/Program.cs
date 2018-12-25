@@ -27,60 +27,20 @@ namespace TraditionalToSimplified
             //計時
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
-            
-            // 連線到DB_TW資料庫
-            MySqlConnection Db_Tw_SqlConnection = new MySqlConnection(configuration.GetSection("db:0:connectString").Value);                
-            try
-            {
-                Db_Tw_SqlConnection.Open();
-            }
-            catch (MySqlException ex)
-            {
-                switch (ex.Number)
-                {
-                    case 1045:
-                        Console.WriteLine("使用者帳號或密碼錯誤");
-                        break;
-                    default:
-                        Console.WriteLine("無法連線到資料庫.");
-                        break;
-                }
-            }
 
-            db_Tw_Service.UpdateTableMy_Category_Tw(Db_Tw_SqlConnection);
-            db_Tw_Service.UpdateTableMy_Country_Tw(Db_Tw_SqlConnection);
-            db_Tw_Service.UpdateTableMy_Press_Tw(Db_Tw_SqlConnection);
-            db_Tw_Service.UpdateTableMy_Product_Tw(Db_Tw_SqlConnection);
-            db_Tw_Service.UpdateTableMy_Publisher_Tw(Db_Tw_SqlConnection);
-            db_Tw_Service.UpdateTableMy_Region_Tw(Db_Tw_SqlConnection);
-            db_Tw_Service.UpdateTableMy_Subtopic_Tw(Db_Tw_SqlConnection);
-            db_Tw_Service.UpdateTableMy_Topic_Tw(Db_Tw_SqlConnection);
-            Db_Tw_SqlConnection.Close();
+            db_Tw_Service.UpdateTableMy_Category_Tw();
+            db_Tw_Service.UpdateTableMy_Country_Tw();
+            db_Tw_Service.UpdateTableMy_Press_Tw();
+            db_Tw_Service.UpdateTableMy_Product_Tw();
+            db_Tw_Service.UpdateTableMy_Publisher_Tw();
+            db_Tw_Service.UpdateTableMy_Region_Tw();
+            db_Tw_Service.UpdateTableMy_Subtopic_Tw();
+            db_Tw_Service.UpdateTableMy_Topic_Tw();
 
-            // 連線到DB_EVENT_TW資料庫
-            MySqlConnection Db_Event_Tw_SqlConnection = new MySqlConnection(configuration.GetSection("db:1:connectString").Value);
-            try
-            {
-                Db_Event_Tw_SqlConnection.Open();
-            }
-            catch (MySqlException ex)
-            {
-                switch (ex.Number)
-                {
-                    case 1045:
-                        Console.WriteLine("使用者帳號或密碼錯誤");
-                        break;
-                    default:
-                        Console.WriteLine("無法連線到資料庫.");
-                        break;
-                }
-            }
-
-            db_Event_Tw_Service.UpdateTableMy_Event_Category_Tw(Db_Event_Tw_SqlConnection);
-            db_Event_Tw_Service.UpdateTableMy_My_Event_Press_Tw(Db_Event_Tw_SqlConnection);
-            db_Event_Tw_Service.UpdateTableMy_Event_Region_Tw(Db_Event_Tw_SqlConnection);
-            db_Event_Tw_Service.UpdateTableMy_Partnar_Category_Tw(Db_Event_Tw_SqlConnection);
-            Db_Event_Tw_SqlConnection.Close();
+            db_Event_Tw_Service.UpdateTableMy_Event_Category_Tw();
+            db_Event_Tw_Service.UpdateTableMy_My_Event_Press_Tw();
+            db_Event_Tw_Service.UpdateTableMy_Event_Region_Tw();
+            db_Event_Tw_Service.UpdateTableMy_Partnar_Category_Tw();
 
             stopWatch.Stop();
             TimeSpan ts = stopWatch.Elapsed;
