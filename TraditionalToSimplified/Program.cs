@@ -15,145 +15,72 @@ namespace TraditionalToSimplified
     {
         static void Main(string[] args)
         {
-          
-
             //讀取json DB連線資訊和TABLE名稱等資料
             var builder = new ConfigurationBuilder()
                              .SetBasePath(Directory.GetCurrentDirectory())
                              .AddJsonFile("settings.json");
             var configuration = builder.Build();
 
-            DataService dataService = new DataService();
-            Utility utility = new Utility();
+            Db_Tw_Service db_Tw_Service = new Db_Tw_Service();
+            Db_Event_Tw_Service db_Event_Tw_Service = new Db_Event_Tw_Service();
+
             //計時
             Stopwatch stopWatch = new Stopwatch();
-
-
-        
-
-            MySqlConnection mySqlConnection = new MySqlConnection(configuration.GetSection("connectString").Value);
-            //計時開始
             stopWatch.Start();
-            // 連線到資料庫
-            utility.StartDb();
-            dataService.UpdateDataToSim(mySqlConnection);
+            
+            // 連線到DB_TW資料庫
+            MySqlConnection Db_Tw_SqlConnection = new MySqlConnection(configuration.GetSection("db:0:connectString").Value);                
+            try
+            {
+                Db_Tw_SqlConnection.Open();
+            }
+            catch (MySqlException ex)
+            {
+                switch (ex.Number)
+                {
+                    case 1045:
+                        Console.WriteLine("使用者帳號或密碼錯誤");
+                        break;
+                    default:
+                        Console.WriteLine("無法連線到資料庫.");
+                        break;
+                }
+            }
 
-            string myKey1 = configuration["connectString"];
-           // string foo = configuration.GetSection("dbname").Value;
+            //db_Tw_Service.UpdateTableMy_Category_Tw(Db_Tw_SqlConnection);
+            //db_Tw_Service.UpdateTableMy_Country_Tw(Db_Tw_SqlConnection);
+            //db_Tw_Service.UpdateTableMy_Press_Tw(Db_Tw_SqlConnection);
+            //db_Tw_Service.UpdateTableMy_Product_Tw(Db_Tw_SqlConnection);
+            //db_Tw_Service.UpdateTableMy_Publisher_Tw(Db_Tw_SqlConnection);
+            //db_Tw_Service.UpdateTableMy_Region_Tw(Db_Tw_SqlConnection);
+            //db_Tw_Service.UpdateTableMy_Subtopic_Tw(Db_Tw_SqlConnection);
+            //db_Tw_Service.UpdateTableMy_Topic_Tw(Db_Tw_SqlConnection);
+            Db_Tw_SqlConnection.Close();
 
+            // 連線到DB_EVENT_TW資料庫
+            MySqlConnection Db_Event_Tw_SqlConnection = new MySqlConnection(configuration.GetSection("db:1:connectString").Value);
+            try
+            {
+                Db_Event_Tw_SqlConnection.Open();
+            }
+            catch (MySqlException ex)
+            {
+                switch (ex.Number)
+                {
+                    case 1045:
+                        Console.WriteLine("使用者帳號或密碼錯誤");
+                        break;
+                    default:
+                        Console.WriteLine("無法連線到資料庫.");
+                        break;
+                }
+            }
 
-
-            //try
-            //{
-            //    using (MySqlCommand mySqlcommand = new MySqlCommand(showTableSql, mySqlConnection))
-            //    {
-            //        MySqlDataReader myData = mySqlcommand.ExecuteReader();
-
-            //        if (!myData.HasRows)
-            //        {
-            //            Console.WriteLine("No data.");
-            //        }
-            //        else
-            //        {
-            //            while (myData.Read())
-            //            {
-            //                dblist.Add(myData.GetString(0));
-            //            }
-            //        }
-            //    }
-            //    mySqlConnection.Close();
-            //}
-            //catch (MySqlException ex)
-            //{
-            //    Console.WriteLine("Error " + ex.Number + " : " + ex.Message);
-            //    Console.ReadLine();
-            //}
-
-            //
-            //try
-            //{
-            //    mySqlConnection.Open();
-            //    using (MySqlCommand mySqlCommand = new MySqlCommand(descSql, mySqlConnection))
-            //    {
-            //        MySqlDataReader myData = mySqlCommand.ExecuteReader();
-            //        if (!myData.HasRows)
-            //        {
-            //            Console.WriteLine("No data.");
-            //        }
-            //        else
-            //        {
-            //            while (myData.Read())
-            //            {
-            //                isvarchar.Add(myData.GetString(1));
-            //            }
-            //        }
-            //    }
-            //    mySqlConnection.Close();
-            //}
-            //catch (MySqlException ex)
-            //{
-            //    Console.WriteLine("Error " + ex.Number + " : " + ex.Message);
-            //    Console.ReadLine();
-            //}
-
-            //
-            //try
-            //{
-            //    mySqlConnection.Open();
-            //    using (MySqlCommand mySqlCommand = new MySqlCommand(sqlSelectSql, mySqlConnection))
-            //    {
-            //        MySqlDataReader myData = mySqlCommand.ExecuteReader();
-            //        if (!myData.HasRows)
-            //        {
-            //            Console.WriteLine("No data.");
-            //        }
-            //        else
-            //        {
-
-            //            for (int x = 0; x < isvarchar.Count; x++)
-            //            {
-            //                if (isvarchar[x].Contains("varchar"))
-            //                {
-            //                    listInt.Add(x);
-            //                }
-            //            }
-            //            int count = 0;
-            //            while (myData.Read())
-            //            {
-            //                var countNO = myData.GetInt32(0);
-            //                var temp = myData.GetValue(3);
-            //                string traditionalContent = HttpUtility.UrlDecode(temp.ToString(), Encoding.GetEncoding("big5"));
-            //                // Console.WriteLine(traditionalContent);
-            //                // sw.WriteLine(traditionalContent);
-            //                string simplifiedContent = utility.ToSimplified(traditionalContent, "ToSimplified");
-            //                // Console.WriteLine(simplifiedContent);
-            //                //sw.WriteLine(simplifiedContent + count.ToString());
-            //                string simplifiedEncode = HttpUtility.UrlEncode(simplifiedContent, Encoding.GetEncoding("GB18030"));
-
-            //                //先放這邊 改名字
-            //                Model.product listsave = new Model.product();
-            //                listsave.Id = countNO;
-            //                listsave.ch = simplifiedEncode;
-            //                list.Add(listsave);
-            //            }
-
-            //        }
-            //    }
-            //    int NONO = 0;
-            //    foreach (var s in list)
-            //        using (MySqlCommand UPDATmySqlCommand = new MySqlCommand("update db_tw.my_product_tw set Prod_Title_TW='" + s.ch + "' WHERE Prod_ID =" + s.Id, mySqlConnection))
-            //        {
-            //            NONO = NONO + 1;
-            //            UPDATmySqlCommand.ExecuteNonQuery();
-            //            sw.WriteLine("流水號:" + NONO + "  " + s.Id + ":" + s.ch);
-            //        }
-
-            //    mySqlConnection.Close();
-            //}
-            //catch (MySqlException ex)
-            //{
-            //    sw.WriteLine(ex);
-            //}
+            db_Event_Tw_Service.UpdateTableMy_Event_Category_Tw(Db_Event_Tw_SqlConnection);
+            db_Event_Tw_Service.UpdateTableMy_My_Event_Press_Tw(Db_Event_Tw_SqlConnection);
+            db_Event_Tw_Service.UpdateTableMy_Event_Region_Tw(Db_Event_Tw_SqlConnection);
+            db_Event_Tw_Service.UpdateTableMy_Partnar_Category_Tw(Db_Event_Tw_SqlConnection);
+            Db_Event_Tw_SqlConnection.Close();
 
             stopWatch.Stop();
             TimeSpan ts = stopWatch.Elapsed;
@@ -165,10 +92,5 @@ namespace TraditionalToSimplified
         }
     }
 }
-//string traditionalContent = HttpUtility.UrlDecode(myData.GetString(1), Encoding.GetEncoding("big5"));
-//Console.WriteLine(traditionalContent);
-//sw.WriteLine(traditionalContent);
-//string simplifiedContent = Utility.ToSimplified(traditionalContent, "ToSimplified");
-//Console.WriteLine(simplifiedContent);
-//sw.WriteLine(simplifiedContent);
+
 

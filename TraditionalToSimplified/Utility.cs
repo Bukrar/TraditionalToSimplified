@@ -26,30 +26,6 @@ namespace TraditionalToSimplified
                     break;
             }
             return newString;
-        }
-
-        public void StartDb()
-        {
-            string connectString = "server=127.0.0.1;uid=root;pwd=H1242457411qaz;database=db_tw";
-            MySqlConnection mySqlConnection = new MySqlConnection(connectString);
-            try
-            {
-                mySqlConnection.Open();
-            }
-            catch (MySqlException ex)
-            {
-                switch (ex.Number)
-                {
-                    case 1045:
-                        Console.WriteLine("使用者帳號或密碼錯誤");
-                        break;
-                    default:
-                        Console.WriteLine("無法連線到資料庫.");
-                        break;
-                }
-            }
-        }
-
-     
+        }    
     }
 }
