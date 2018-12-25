@@ -28,6 +28,7 @@ namespace TraditionalToSimplified
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
 
+            //修改db_Tw資料庫
             db_Tw_Service.UpdateTableMy_Category_Tw();
             db_Tw_Service.UpdateTableMy_Country_Tw();
             db_Tw_Service.UpdateTableMy_Press_Tw();
@@ -36,7 +37,7 @@ namespace TraditionalToSimplified
             db_Tw_Service.UpdateTableMy_Region_Tw();
             db_Tw_Service.UpdateTableMy_Subtopic_Tw();
             db_Tw_Service.UpdateTableMy_Topic_Tw();
-
+            //修改db_Event_Tw資料庫
             db_Event_Tw_Service.UpdateTableMy_Event_Category_Tw();
             db_Event_Tw_Service.UpdateTableMy_My_Event_Press_Tw();
             db_Event_Tw_Service.UpdateTableMy_Event_Region_Tw();
