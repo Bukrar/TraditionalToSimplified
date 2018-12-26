@@ -3,6 +3,7 @@ using Microsoft.International.Converters.TraditionalChineseToSimplifiedConverter
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace TraditionalToSimplified
@@ -26,6 +27,15 @@ namespace TraditionalToSimplified
                     break;
             }
             return newString;
-        }    
+        }
+
+        public static IConfigurationRoot GetJson()
+        {
+            var builder = new ConfigurationBuilder()
+                                .SetBasePath(Directory.GetCurrentDirectory())
+                                .AddJsonFile("settings.json");
+            var configuration = builder.Build();
+            return configuration;
+        }
     }
 }

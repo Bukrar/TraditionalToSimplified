@@ -13,11 +13,9 @@ namespace TraditionalToSimplified
         Utility utility = new Utility();
         public void UpdateTableMy_Event_Category_Tw()
         {
+            Console.WriteLine("處理Db_Event_Tw資料庫 資料表:my_event_category_tw中...");
             //呼叫json資源
-            var builder = new ConfigurationBuilder()
-                             .SetBasePath(Directory.GetCurrentDirectory())
-                             .AddJsonFile("settings.json");
-            var configuration = builder.Build();
+            var configuration = Utility.GetJson();
 
             List<Model.My_Event_Category_Tw> modelList = new List<Model.My_Event_Category_Tw>();
 
@@ -44,10 +42,7 @@ namespace TraditionalToSimplified
             try
             {
                 using (MySqlCommand mySqlCommand =
-                    new MySqlCommand("SELECT " + configuration.GetSection("db:1:tables:my_event_category_tw:0").Value
-                                               + "," + configuration.GetSection("db:1:tables:my_event_category_tw:1").Value
-                                               + " FROM " + configuration.GetSection("db:1:dbname").Value + "." +
-                                               configuration.GetSection("db:1:tables:my_event_category_tw").Key, Db_Tw_SqlConnection))
+                    new MySqlCommand("SELECT Code,Name FROM DB_EVENT_TW.my_event_category_tw", Db_Tw_SqlConnection))
                 {
                     MySqlDataReader myData = mySqlCommand.ExecuteReader();
                     if (!myData.HasRows)
@@ -100,19 +95,20 @@ namespace TraditionalToSimplified
 
                 foreach (var s in modelList)
                 {
-                    using (MySqlCommand UPDATmySqlCommand =
+                    using (MySqlCommand updatMySqlCommand =
                         new MySqlCommand("update " + configuration.GetSection("db:3:dbname").Value +
                                          "." + configuration.GetSection("db:3:tables:my_event_category_tw").Key +
                                          " set " + configuration.GetSection("db:3:tables:my_event_category_tw:1").Value +
-                                         "='" + s.Name +
-                                         "' WHERE " + configuration.GetSection("db:3:tables:my_event_category_tw:0").Value +
-                                         "='" + s.Code + "'", Db_Cn_SqlConnection))
+                                         "= @Name WHERE " + configuration.GetSection("db:3:tables:my_event_category_tw:0").Value +
+                                         "= @Code", Db_Cn_SqlConnection))
                     {
-                        UPDATmySqlCommand.ExecuteNonQuery();
+                        updatMySqlCommand.Parameters.AddWithValue("@Name", s.Name);
+                        updatMySqlCommand.Parameters.AddWithValue("@Code", s.Code);
+                        updatMySqlCommand.ExecuteNonQuery();
                     }
                 }
                 Db_Cn_SqlConnection.Close();
-                Console.WriteLine("DB:DB_EVENT_CN TABLE: my_event_category_tw 資料處理完成");
+                Console.WriteLine("DB_EVENT_CN資料庫 資料表:my_event_category_tw 資料處理完成");
             }
             catch (MySqlException ex)
             {
@@ -120,13 +116,11 @@ namespace TraditionalToSimplified
             }
         }
 
-        public void UpdateTableMy_My_Event_Press_Tw()
+        public void UpdateTableMy_Event_Press_Tw()
         {
+            Console.WriteLine("處理Db_Event_Tw資料庫 資料表:my_event_press_tw中...");
             //呼叫json資源
-            var builder = new ConfigurationBuilder()
-                             .SetBasePath(Directory.GetCurrentDirectory())
-                             .AddJsonFile("settings.json");
-            var configuration = builder.Build();
+            var configuration = Utility.GetJson();
 
             List<Model.My_Event_Press_Tw> modelList = new List<Model.My_Event_Press_Tw>();
 
@@ -153,11 +147,7 @@ namespace TraditionalToSimplified
             try
             {
                 using (MySqlCommand mySqlCommand =
-                    new MySqlCommand("SELECT " + configuration.GetSection("db:1:tables:my_event_press_tw:0").Value
-                                               + "," + configuration.GetSection("db:1:tables:my_event_press_tw:1").Value
-                                               + "," + configuration.GetSection("db:1:tables:my_event_press_tw:2").Value
-                                               + " FROM " + configuration.GetSection("db:1:dbname").Value + "." +
-                                               configuration.GetSection("db:1:tables:my_event_press_tw").Key, Db_Tw_SqlConnection))
+                    new MySqlCommand("SELECT Press_SEQ,Press_Title,Press_Content FROM DB_EVENT_TW.my_event_press_tw", Db_Tw_SqlConnection))
                 {
                     MySqlDataReader myData = mySqlCommand.ExecuteReader();
                     if (!myData.HasRows)
@@ -223,21 +213,22 @@ namespace TraditionalToSimplified
 
                 foreach (var s in modelList)
                 {
-                    using (MySqlCommand UPDATmySqlCommand =
+                    using (MySqlCommand updatMySqlCommand =
                          new MySqlCommand("update " + configuration.GetSection("db:3:dbname").Value +
                                          "." + configuration.GetSection("db:3:tables:my_event_press_tw").Key +
                                          " set " + configuration.GetSection("db:3:tables:my_event_press_tw:1").Value +
-                                         "='" + s.Press_Title +
-                                         "'," + configuration.GetSection("db:3:tables:my_event_press_tw:2").Value +
-                                         "='" + s.Press_Content +
-                                         " 'WHERE " + configuration.GetSection("db:3:tables:my_event_press_tw:0").Value +
-                                         "='" + s.Press_SEQ + "'", Db_Cn_SqlConnection))
+                                         "= @Press_Title," + configuration.GetSection("db:3:tables:my_event_press_tw:2").Value +
+                                         "= @Press_Content WHERE " + configuration.GetSection("db:3:tables:my_event_press_tw:0").Value +
+                                         "= @Press_SEQ", Db_Cn_SqlConnection))
                     {
-                        UPDATmySqlCommand.ExecuteNonQuery();                 
+                        updatMySqlCommand.Parameters.AddWithValue("@Press_Title", s.Press_Title);
+                        updatMySqlCommand.Parameters.AddWithValue("@Press_Content", s.Press_Content);
+                        updatMySqlCommand.Parameters.AddWithValue("@Press_SEQ", s.Press_SEQ);
+                        updatMySqlCommand.ExecuteNonQuery();                 
                     }
                 }
                 Db_Cn_SqlConnection.Close();
-                Console.WriteLine("DB:DB_EVENT_CN TABLE: my_event_press_tw 資料處理完成");
+                Console.WriteLine("DB_EVENT_CN資料庫 資料表:my_event_press_tw 資料處理完成");
             }
             catch (MySqlException ex)
             {
@@ -247,11 +238,9 @@ namespace TraditionalToSimplified
 
         public void UpdateTableMy_Event_Region_Tw()
         {
+            Console.WriteLine("處理Db_Event_Tw資料庫 資料表:my_event_region_tw中...");
             //呼叫json資源
-            var builder = new ConfigurationBuilder()
-                             .SetBasePath(Directory.GetCurrentDirectory())
-                             .AddJsonFile("settings.json");
-            var configuration = builder.Build();
+            var configuration = Utility.GetJson();
 
             List<Model.My_Event_Region_Tw> modelList = new List<Model.My_Event_Region_Tw>();
 
@@ -278,10 +267,7 @@ namespace TraditionalToSimplified
             try
             {
                 using (MySqlCommand mySqlCommand =
-                    new MySqlCommand("SELECT " + configuration.GetSection("db:1:tables:my_event_region_tw:0").Value
-                                               + "," + configuration.GetSection("db:1:tables:my_event_region_tw:1").Value
-                                               + " FROM " + configuration.GetSection("db:1:dbname").Value + "." +
-                                               configuration.GetSection("db:1:tables:my_event_region_tw").Key, Db_Tw_SqlConnection))
+                    new MySqlCommand("SELECT Code,Name FROM DB_EVENT_TW.my_event_region_tw", Db_Tw_SqlConnection))
                 {
                     MySqlDataReader myData = mySqlCommand.ExecuteReader();
                     if (!myData.HasRows)
@@ -335,19 +321,20 @@ namespace TraditionalToSimplified
 
                 foreach (var s in modelList)
                 {
-                    using (MySqlCommand UPDATmySqlCommand =
+                    using (MySqlCommand updatMySqlCommand =
                          new MySqlCommand("update " + configuration.GetSection("db:3:dbname").Value +
                                          "." + configuration.GetSection("db:3:tables:my_event_region_tw").Key +
                                          " set " + configuration.GetSection("db:3:tables:my_event_region_tw:1").Value +
-                                         "='" + s.Name +
-                                         "' WHERE " + configuration.GetSection("db:3:tables:my_event_region_tw:0").Value +
-                                         "='" + s.Code + "'", Db_Cn_SqlConnection))
+                                         "= @Name WHERE " + configuration.GetSection("db:3:tables:my_event_region_tw:0").Value +
+                                         "= @Code", Db_Cn_SqlConnection))
                     {
-                        UPDATmySqlCommand.ExecuteNonQuery();
+                        updatMySqlCommand.Parameters.AddWithValue("@Name", s.Name);
+                        updatMySqlCommand.Parameters.AddWithValue("@Code", s.Code);
+                        updatMySqlCommand.ExecuteNonQuery();
                     }
                 }
                 Db_Cn_SqlConnection.Close();
-                Console.WriteLine("DB:DB_EVENT_CN TABLE: my_event_region_tw 資料處理完成");
+                Console.WriteLine("DB_EVENT_CN資料庫 資料表:my_event_region_tw 資料處理完成");
             }
             catch (MySqlException ex)
             {
@@ -357,11 +344,9 @@ namespace TraditionalToSimplified
 
         public void UpdateTableMy_Partnar_Category_Tw()
         {
+            Console.WriteLine("處理Db_Event_Tw資料庫 資料表:my_partnar_category_tw中...");
             //呼叫json資源
-            var builder = new ConfigurationBuilder()
-                             .SetBasePath(Directory.GetCurrentDirectory())
-                             .AddJsonFile("settings.json");
-            var configuration = builder.Build();
+            var configuration = Utility.GetJson();
 
             List<Model.My_Partnar_Category_Tw> modelList = new List<Model.My_Partnar_Category_Tw>();
 
@@ -388,11 +373,7 @@ namespace TraditionalToSimplified
             try
             {
                 using (MySqlCommand mySqlCommand =
-                    new MySqlCommand("SELECT " + configuration.GetSection("db:1:tables:my_partnar_category_tw:0").Value
-                                               + "," + configuration.GetSection("db:1:tables:my_partnar_category_tw:1").Value
-                                               + "," + configuration.GetSection("db:1:tables:my_partnar_category_tw:2").Value
-                                               + " FROM " + configuration.GetSection("db:1:dbname").Value + "." +
-                                               configuration.GetSection("db:1:tables:my_partnar_category_tw").Key, Db_Tw_SqlConnection))
+                    new MySqlCommand("SELECT Code,Name,Title FROM DB_EVENT_TW.my_partnar_category_tw", Db_Tw_SqlConnection))
                 {
                     MySqlDataReader myData = mySqlCommand.ExecuteReader();
                     if (!myData.HasRows)
@@ -458,21 +439,22 @@ namespace TraditionalToSimplified
 
                 foreach (var s in modelList)
                 {
-                    using (MySqlCommand UPDATmySqlCommand =
+                    using (MySqlCommand updatMySqlCommand =
                         new MySqlCommand("update " + configuration.GetSection("db:3:dbname").Value +
                                          "." + configuration.GetSection("db:3:tables:my_partnar_category_tw").Key +
                                          " set " + configuration.GetSection("db:3:tables:my_partnar_category_tw:1").Value +
-                                         "='" + s.Name +
-                                         "'," + configuration.GetSection("db:3:tables:my_partnar_category_tw:2").Value +
-                                         "='" + s.Title +
-                                         " 'WHERE " + configuration.GetSection("db:3:tables:my_partnar_category_tw:0").Value +
-                                         "='" + s.Code + "'", Db_Cn_SqlConnection))
+                                         "= @Name," + configuration.GetSection("db:3:tables:my_partnar_category_tw:2").Value +
+                                         "= @Title WHERE " + configuration.GetSection("db:3:tables:my_partnar_category_tw:0").Value +
+                                         "= @Code", Db_Cn_SqlConnection))
                     {
-                        UPDATmySqlCommand.ExecuteNonQuery();
+                        updatMySqlCommand.Parameters.AddWithValue("@Name", s.Name);
+                        updatMySqlCommand.Parameters.AddWithValue("@Title", s.Title);
+                        updatMySqlCommand.Parameters.AddWithValue("@Code", s.Code);
+                        updatMySqlCommand.ExecuteNonQuery();
                     }
                 }
                 Db_Cn_SqlConnection.Close();
-                Console.WriteLine("DB:DB_EVENT_TW TABLE: my_partnar_category_tw 資料處理完成");
+                Console.WriteLine("DB_EVENT_CN資料庫 資料表:my_partnar_category_tw 資料處理完成");
             }
             catch (MySqlException ex)
             {
