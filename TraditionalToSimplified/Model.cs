@@ -10,6 +10,13 @@ namespace TraditionalToSimplified
         {
             public string Category_ID { get; set; }
             public string Category_Name_TW { get; set; }
+
+            public string Category_File { get; set; }
+            public int Category_Sort_Order { get; set; }
+            public int Category_report { get; set; }
+            public int Category_newsletter { get; set; }
+            public int Category_annual { get; set; }
+            public int Category_company { get; set; }
         }
 
         public class My_Country_Tw
