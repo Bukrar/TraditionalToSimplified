@@ -23,10 +23,10 @@ namespace TraditionalToSimplified
             stopWatch.Start();
 
             //修改db_Tw至db_Cn資料庫
-            db_Tw_Service.UpdateTableMy_Category_Tw();
-            //db_Tw_Service.UpdateTableMy_Country_Tw();
+            //db_Tw_Service.UpdateTableMy_Category_Tw();
+           // db_Tw_Service.UpdateTableMy_Country_Tw();
             //db_Tw_Service.UpdateTableMy_Press_Tw();
-            //db_Tw_Service.UpdateTableMy_Product_Tw();
+            db_Tw_Service.UpdateTableMy_Product_Tw();
             //db_Tw_Service.UpdateTableMy_Publisher_Tw();
             //db_Tw_Service.UpdateTableMy_Region_Tw();
             //db_Tw_Service.UpdateTableMy_Subtopic_Tw();

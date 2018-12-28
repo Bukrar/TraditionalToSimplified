@@ -23,18 +23,64 @@ namespace TraditionalToSimplified
         {
             public string Country_ID { get; set; }
             public string Country_Name_TW { get; set; }
+            public int Country_report { get; set; }
+            public int Country_newsletter { get; set; }
+            public int Country_annual { get; set; }
         }
 
         public class My_Press_Tw
         {
-            public string Press_SEQ { get; set; }
+            public int Press_SEQ { get; set; }       
+            public string Press_Type { get; set; }
+            public DateTime Press_Date { get; set; }
+            public string Press_File { get; set; }
             public string Press_Title { get; set; }
+            public string Press_Content { get; set; }
+            public int Press_On { get; set; }
+            public int Press_Prod_ID { get; set; }
+            public string Press_Prod_Title { get; set; }
+            public string Press_Prod_Category { get; set; }
+            public int Press_Prod_Discon { get; set; }
+            public string Press_Pub_Code { get; set; }
+            public string Press_Pub_Name { get; set; }
+            public DateTime Update { get; set; }
         }
 
         public class My_Product_Tw
         {
-            public string Prod_ID { get; set; }
+            public int Prod_ID { get; set; }
+            public int Prod_Delete_Flg { get; set; }
+            public string Prod_Title_EN { get; set; }
             public string Prod_Title_TW { get; set; }
+            public string Prod_Type { get; set; }
+            public string Prod_TypeCode { get; set; }
+            public string Prod_MainCategory { get; set; }
+            public string Prod_Category { get; set; }
+            public string Prod_Topic { get; set; }
+            public string Prod_SubTopic { get; set; }
+            public string Prod_Country { get; set; }
+            public string Prod_ID_Pub { get; set; }
+            public string Prod_Pub_ID { get; set; }
+            public string Prod_PubDate { get; set; }
+            public string Prod_File { get; set; }
+            public string Prod_SampleFile { get; set; }
+            public int Prod_BrowseNG_Flg { get; set; }
+            public int Prod_FullRepLink_Flg { get; set; }
+            public string Prod_Intro_TW { get; set; }
+            public DateTime Prod_Update { get; set; }
+            public string Prod_CurrencyCode { get; set; }
+            public float Prod_LowPrice { get; set; }
+            public float Prod_BeforePrice { get; set; }
+            public string Prod_ContentInfo { get; set; }
+            public string Prod_Related_ID { get; set; }
+            public string Prod_Related_Keywords { get; set; }
+            public int Prod_IssueFrequency { get; set; }
+            public int Prod_PrePub { get; set; }
+            public int Prod_CoverImage { get; set; }
+            public DateTime Prod_WhatsNew { get; set; }
+            public int Prod_Link_EN { get; set; }
+            public int Prod_Link_JP { get; set; }
+            public int Prod_Link_KR { get; set; }
         }
 
         public class My_Publisher_Tw
