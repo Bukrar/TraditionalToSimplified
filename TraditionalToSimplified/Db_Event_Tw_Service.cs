@@ -79,10 +79,9 @@ namespace TraditionalToSimplified
                             }
                             else
                             {
-                                Console.WriteLine("DB:DB_EVENT_TW TABLE: my_event_category_tw 中欄位值為NULL 資料PK值為: " + myData.GetString(0));
+                                Console.WriteLine("DB:DB_EVENT_TW TABLE: my_event_category_tw 中欄位值為NULL 資料PK為: " + myData.GetString(0));
                             }
                         }
-
                     }
                 }
                 Db_Tw_SqlConnection.Close();
@@ -198,7 +197,7 @@ namespace TraditionalToSimplified
                     {
                         try
                         {
-                            Model.My_Event_Category_Tw my_Country_Tw = new Model.My_Event_Category_Tw();
+                            Model.My_Event_Category_Tw my_Event_Category_Tw = new Model.My_Event_Category_Tw();
                             Db_Tw_SqlConnection.Open();
                             using (MySqlCommand mySqlCommand =
                                new MySqlCommand("SELECT * FROM DB_EVENT_TW.my_event_category_tw WHERE " +
@@ -209,11 +208,11 @@ namespace TraditionalToSimplified
                                 MySqlDataReader myData = mySqlCommand.ExecuteReader();
                                 while (myData.Read())
                                 {
-                                    my_Country_Tw.Code = myData.GetString(0);
-                                    my_Country_Tw.Name = utility.Big5ToGb18030(myData.GetString(1));
-                                    my_Country_Tw.File = myData.GetString(2);
-                                    my_Country_Tw.Sort = myData.GetInt32(3);
-                                    my_Country_Tw.Count = myData.GetInt32(4);
+                                    my_Event_Category_Tw.Code = myData.GetString(0);
+                                    my_Event_Category_Tw.Name = utility.Big5ToGb18030(myData.GetString(1));
+                                    my_Event_Category_Tw.File = myData.GetString(2);
+                                    my_Event_Category_Tw.Sort = myData.GetInt32(3);
+                                    my_Event_Category_Tw.Count = myData.GetInt32(4);
                                 }
                             }
                             Db_Tw_SqlConnection.Close();
@@ -225,11 +224,11 @@ namespace TraditionalToSimplified
                                          "VALUES (@Code,@Name,@File,@Sort,@Count);"
                                          , Db_Cn_SqlConnection))
                             {
-                                createMySqlCommand.Parameters.AddWithValue("@Code", my_Country_Tw.Code);
-                                createMySqlCommand.Parameters.AddWithValue("@Name", my_Country_Tw.Name);
-                                createMySqlCommand.Parameters.AddWithValue("@File", my_Country_Tw.File);
-                                createMySqlCommand.Parameters.AddWithValue("@Sort", my_Country_Tw.Sort);
-                                createMySqlCommand.Parameters.AddWithValue("@Count", my_Country_Tw.Count);
+                                createMySqlCommand.Parameters.AddWithValue("@Code", my_Event_Category_Tw.Code);
+                                createMySqlCommand.Parameters.AddWithValue("@Name", my_Event_Category_Tw.Name);
+                                createMySqlCommand.Parameters.AddWithValue("@File", my_Event_Category_Tw.File);
+                                createMySqlCommand.Parameters.AddWithValue("@Sort", my_Event_Category_Tw.Sort);
+                                createMySqlCommand.Parameters.AddWithValue("@Count", my_Event_Category_Tw.Count);
                                 createMySqlCommand.ExecuteNonQuery();
                             }
                         }
@@ -329,7 +328,7 @@ namespace TraditionalToSimplified
                                 }
                                 else
                                 {
-                                    Console.WriteLine("DB:DB_EVENT_TW TABLE: my_event_press_tw 中欄位值為NULL 資料PK值為: " + myData.GetString(0));
+                                    Console.WriteLine("DB:DB_EVENT_TW TABLE: my_event_press_tw 中欄位值為NULL 資料PK為: " + myData.GetString(0));
                                 }
                                 if (!myData.IsDBNull(2))
                                 {
@@ -338,7 +337,7 @@ namespace TraditionalToSimplified
                                 }
                                 else
                                 {
-                                    Console.WriteLine("DB:DB_EVENT_TW TABLE: my_event_press_tw 中欄位值為NULL 資料PK值為: " + myData.GetString(0));
+                                    Console.WriteLine("DB:DB_EVENT_TW TABLE: my_event_press_tw 中欄位值為NULL 資料PK為: " + myData.GetString(0));
                                 }
 
                                 twList.Add(modelData);
@@ -467,7 +466,7 @@ namespace TraditionalToSimplified
                     {
                         try
                         {
-                            Model.My_Event_Press_Tw my_Country_Tw = new Model.My_Event_Press_Tw();
+                            Model.My_Event_Press_Tw my_Event_Press_Tw = new Model.My_Event_Press_Tw();
                             Db_Tw_SqlConnection.Open();
                             using (MySqlCommand mySqlCommand =
                                new MySqlCommand("SELECT * FROM DB_EVENT_TW.my_event_press_tw WHERE " +
@@ -478,41 +477,41 @@ namespace TraditionalToSimplified
                                 MySqlDataReader myData = mySqlCommand.ExecuteReader();
                                 while (myData.Read())
                                 {
-                                    my_Country_Tw.Press_SEQ = myData.GetInt32(0);
-                                    my_Country_Tw.Press_Type = utility.Big5ToGb18030(myData.GetString(1));
-                                    my_Country_Tw.Press_Date = myData.GetDateTime(2);
-                                    my_Country_Tw.Press_File = myData.GetString(3);
-                                    my_Country_Tw.Press_Title = utility.Big5ToGb18030(myData.GetString(4));
+                                    my_Event_Press_Tw.Press_SEQ = myData.GetInt32(0);
+                                    my_Event_Press_Tw.Press_Type = utility.Big5ToGb18030(myData.GetString(1));
+                                    my_Event_Press_Tw.Press_Date = myData.GetDateTime(2);
+                                    my_Event_Press_Tw.Press_File = myData.GetString(3);
+                                    my_Event_Press_Tw.Press_Title = utility.Big5ToGb18030(myData.GetString(4));
                                     if (!myData.IsDBNull(5))
                                     {
-                                        my_Country_Tw.Press_Content = utility.Big5ToGb18030(myData.GetString(5));
+                                        my_Event_Press_Tw.Press_Content = utility.Big5ToGb18030(myData.GetString(5));
                                     }
-                                    my_Country_Tw.Press_On = myData.GetInt32(6);
+                                    my_Event_Press_Tw.Press_On = myData.GetInt32(6);
                                     if (!myData.IsDBNull(7))
                                     {
-                                        my_Country_Tw.Press_Prod_ID = myData.GetInt32(7);
+                                        my_Event_Press_Tw.Press_Prod_ID = myData.GetInt32(7);
                                     }
-                                    my_Country_Tw.Press_Prod_Title = myData.GetString(8);
-                                    my_Country_Tw.Press_Prod_Category = myData.GetString(9);
-                                    my_Country_Tw.Press_Prod_Discon = myData.GetInt32(10);
-                                    my_Country_Tw.Press_Pub_Code = myData.GetString(11);
-                                    my_Country_Tw.Press_Pub_Name = myData.GetString(12);
-                                    my_Country_Tw.Event_Start_Date = myData.GetDateTime(13);
-                                    my_Country_Tw.Event_End_Date = myData.GetDateTime(14);
+                                    my_Event_Press_Tw.Press_Prod_Title = myData.GetString(8);
+                                    my_Event_Press_Tw.Press_Prod_Category = myData.GetString(9);
+                                    my_Event_Press_Tw.Press_Prod_Discon = myData.GetInt32(10);
+                                    my_Event_Press_Tw.Press_Pub_Code = myData.GetString(11);
+                                    my_Event_Press_Tw.Press_Pub_Name = myData.GetString(12);
+                                    my_Event_Press_Tw.Event_Start_Date = myData.GetDateTime(13);
+                                    my_Event_Press_Tw.Event_End_Date = myData.GetDateTime(14);
                                     if (!myData.IsDBNull(15))
                                     {
-                                        my_Country_Tw.Event_Venue = myData.GetString(15);
+                                        my_Event_Press_Tw.Event_Venue = myData.GetString(15);
                                     }
                                     if (!myData.IsDBNull(16))
                                     {
-                                        my_Country_Tw.Event_Country = myData.GetString(16);
+                                        my_Event_Press_Tw.Event_Country = myData.GetString(16);
                                     }
-                                    my_Country_Tw.Prod_WEB_OnOff = myData.GetInt32(17);
-                                    my_Country_Tw.Prod_WEB_URL = myData.GetString(18);
-                                    my_Country_Tw.Prod_WEB_JP = myData.GetInt32(19);
-                                    my_Country_Tw.Prod_WEB_EN = myData.GetInt32(20);
-                                    my_Country_Tw.Prod_WEB_TW = myData.GetInt32(21);
-                                    my_Country_Tw.Prod_WEB_KR = myData.GetInt32(22);
+                                    my_Event_Press_Tw.Prod_WEB_OnOff = myData.GetInt32(17);
+                                    my_Event_Press_Tw.Prod_WEB_URL = myData.GetString(18);
+                                    my_Event_Press_Tw.Prod_WEB_JP = myData.GetInt32(19);
+                                    my_Event_Press_Tw.Prod_WEB_EN = myData.GetInt32(20);
+                                    my_Event_Press_Tw.Prod_WEB_TW = myData.GetInt32(21);
+                                    my_Event_Press_Tw.Prod_WEB_KR = myData.GetInt32(22);
                                 }
                             }
                             Db_Tw_SqlConnection.Close();
@@ -524,29 +523,29 @@ namespace TraditionalToSimplified
                                          "VALUES (@Press_SEQ,@Press_Type,@Press_Date,@Press_File,@Press_Title,@Press_Content,@Press_On,@Press_Prod_ID,@Press_Prod_Title,@Press_Prod_Category,@Press_Prod_Discon,@Press_Pub_Code,@Press_Pub_Name,@Event_Start_Date,@Event_End_Date,@Event_Venue,@Event_Country,@Prod_WEB_OnOff,@Prod_WEB_URL,@Prod_WEB_JP,@Prod_WEB_EN,@Prod_WEB_TW,@Prod_WEB_KR);"
                                          , Db_Cn_SqlConnection))
                             {
-                                createMySqlCommand.Parameters.AddWithValue("@Press_SEQ", my_Country_Tw.Press_SEQ);
-                                createMySqlCommand.Parameters.AddWithValue("@Press_Type", my_Country_Tw.Press_Type);
-                                createMySqlCommand.Parameters.AddWithValue("@Press_Date", my_Country_Tw.Press_Date);
-                                createMySqlCommand.Parameters.AddWithValue("@Press_File", my_Country_Tw.Press_File);
-                                createMySqlCommand.Parameters.AddWithValue("@Press_Title", my_Country_Tw.Press_Title);
-                                createMySqlCommand.Parameters.AddWithValue("@Press_Content", my_Country_Tw.Press_Content);
-                                createMySqlCommand.Parameters.AddWithValue("@Press_On", my_Country_Tw.Press_On);
-                                createMySqlCommand.Parameters.AddWithValue("@Press_Prod_ID", my_Country_Tw.Press_Prod_ID);
-                                createMySqlCommand.Parameters.AddWithValue("@Press_Prod_Title", my_Country_Tw.Press_Prod_Title);
-                                createMySqlCommand.Parameters.AddWithValue("@Press_Prod_Category", my_Country_Tw.Press_Prod_Category);
-                                createMySqlCommand.Parameters.AddWithValue("@Press_Prod_Discon", my_Country_Tw.Press_Prod_Discon);
-                                createMySqlCommand.Parameters.AddWithValue("@Press_Pub_Code", my_Country_Tw.Press_Pub_Code);
-                                createMySqlCommand.Parameters.AddWithValue("@Press_Pub_Name", my_Country_Tw.Press_Pub_Name);
-                                createMySqlCommand.Parameters.AddWithValue("@Event_Start_Date", my_Country_Tw.Event_Start_Date);
-                                createMySqlCommand.Parameters.AddWithValue("@Event_End_Date", my_Country_Tw.Event_End_Date);
-                                createMySqlCommand.Parameters.AddWithValue("@Event_Venue", my_Country_Tw.Event_Venue);
-                                createMySqlCommand.Parameters.AddWithValue("@Event_Country", my_Country_Tw.Event_Country);
-                                createMySqlCommand.Parameters.AddWithValue("@Prod_WEB_OnOff", my_Country_Tw.Prod_WEB_OnOff);
-                                createMySqlCommand.Parameters.AddWithValue("@Prod_WEB_URL", my_Country_Tw.Prod_WEB_URL);
-                                createMySqlCommand.Parameters.AddWithValue("@Prod_WEB_JP", my_Country_Tw.Prod_WEB_JP);
-                                createMySqlCommand.Parameters.AddWithValue("@Prod_WEB_EN", my_Country_Tw.Prod_WEB_EN);
-                                createMySqlCommand.Parameters.AddWithValue("@Prod_WEB_TW", my_Country_Tw.Prod_WEB_TW);
-                                createMySqlCommand.Parameters.AddWithValue("@Prod_WEB_KR", my_Country_Tw.Prod_WEB_KR);     
+                                createMySqlCommand.Parameters.AddWithValue("@Press_SEQ", my_Event_Press_Tw.Press_SEQ);
+                                createMySqlCommand.Parameters.AddWithValue("@Press_Type", my_Event_Press_Tw.Press_Type);
+                                createMySqlCommand.Parameters.AddWithValue("@Press_Date", my_Event_Press_Tw.Press_Date);
+                                createMySqlCommand.Parameters.AddWithValue("@Press_File", my_Event_Press_Tw.Press_File);
+                                createMySqlCommand.Parameters.AddWithValue("@Press_Title", my_Event_Press_Tw.Press_Title);
+                                createMySqlCommand.Parameters.AddWithValue("@Press_Content", my_Event_Press_Tw.Press_Content);
+                                createMySqlCommand.Parameters.AddWithValue("@Press_On", my_Event_Press_Tw.Press_On);
+                                createMySqlCommand.Parameters.AddWithValue("@Press_Prod_ID", my_Event_Press_Tw.Press_Prod_ID);
+                                createMySqlCommand.Parameters.AddWithValue("@Press_Prod_Title", my_Event_Press_Tw.Press_Prod_Title);
+                                createMySqlCommand.Parameters.AddWithValue("@Press_Prod_Category", my_Event_Press_Tw.Press_Prod_Category);
+                                createMySqlCommand.Parameters.AddWithValue("@Press_Prod_Discon", my_Event_Press_Tw.Press_Prod_Discon);
+                                createMySqlCommand.Parameters.AddWithValue("@Press_Pub_Code", my_Event_Press_Tw.Press_Pub_Code);
+                                createMySqlCommand.Parameters.AddWithValue("@Press_Pub_Name", my_Event_Press_Tw.Press_Pub_Name);
+                                createMySqlCommand.Parameters.AddWithValue("@Event_Start_Date", my_Event_Press_Tw.Event_Start_Date);
+                                createMySqlCommand.Parameters.AddWithValue("@Event_End_Date", my_Event_Press_Tw.Event_End_Date);
+                                createMySqlCommand.Parameters.AddWithValue("@Event_Venue", my_Event_Press_Tw.Event_Venue);
+                                createMySqlCommand.Parameters.AddWithValue("@Event_Country", my_Event_Press_Tw.Event_Country);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_WEB_OnOff", my_Event_Press_Tw.Prod_WEB_OnOff);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_WEB_URL", my_Event_Press_Tw.Prod_WEB_URL);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_WEB_JP", my_Event_Press_Tw.Prod_WEB_JP);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_WEB_EN", my_Event_Press_Tw.Prod_WEB_EN);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_WEB_TW", my_Event_Press_Tw.Prod_WEB_TW);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_WEB_KR", my_Event_Press_Tw.Prod_WEB_KR);     
                                 createMySqlCommand.ExecuteNonQuery();
                             }
                         }
@@ -652,7 +651,7 @@ namespace TraditionalToSimplified
                             }
                             else
                             {
-                                Console.WriteLine("DB:DB_EVENT_TW TABLE: my_event_region_tw 中欄位值為NULL 資料PK值為: " + myData.GetString(0));
+                                Console.WriteLine("DB:DB_EVENT_TW TABLE: my_event_region_tw 中欄位值為NULL 資料PK為: " + myData.GetString(0));
                             }
                         }
 
@@ -771,7 +770,7 @@ namespace TraditionalToSimplified
                     {
                         try
                         {
-                            Model.My_Event_Region_Tw my_Country_Tw = new Model.My_Event_Region_Tw();
+                            Model.My_Event_Region_Tw my_Event_Region_Tw = new Model.My_Event_Region_Tw();
                             Db_Tw_SqlConnection.Open();
                             using (MySqlCommand mySqlCommand =
                                new MySqlCommand("SELECT * FROM DB_EVENT_TW.my_event_region_tw WHERE " +
@@ -782,10 +781,10 @@ namespace TraditionalToSimplified
                                 MySqlDataReader myData = mySqlCommand.ExecuteReader();
                                 while (myData.Read())
                                 {
-                                    my_Country_Tw.Code = myData.GetString(0);
-                                    my_Country_Tw.Name = utility.Big5ToGb18030(myData.GetString(1));
-                                    my_Country_Tw.Count = myData.GetInt32(2);
-                                    my_Country_Tw.PCount = myData.GetInt32(3);
+                                    my_Event_Region_Tw.Code = myData.GetString(0);
+                                    my_Event_Region_Tw.Name = utility.Big5ToGb18030(myData.GetString(1));
+                                    my_Event_Region_Tw.Count = myData.GetInt32(2);
+                                    my_Event_Region_Tw.PCount = myData.GetInt32(3);
                                 }
                             }
                             Db_Tw_SqlConnection.Close();
@@ -797,10 +796,10 @@ namespace TraditionalToSimplified
                                          "VALUES (@Code,@Name,@Count,@PCount);"
                                          , Db_Cn_SqlConnection))
                             {
-                                createMySqlCommand.Parameters.AddWithValue("@Code", my_Country_Tw.Code);
-                                createMySqlCommand.Parameters.AddWithValue("@Name", my_Country_Tw.Name);
-                                createMySqlCommand.Parameters.AddWithValue("@Count", my_Country_Tw.Count);
-                                createMySqlCommand.Parameters.AddWithValue("@PCount", my_Country_Tw.PCount);
+                                createMySqlCommand.Parameters.AddWithValue("@Code", my_Event_Region_Tw.Code);
+                                createMySqlCommand.Parameters.AddWithValue("@Name", my_Event_Region_Tw.Name);
+                                createMySqlCommand.Parameters.AddWithValue("@Count", my_Event_Region_Tw.Count);
+                                createMySqlCommand.Parameters.AddWithValue("@PCount", my_Event_Region_Tw.PCount);
                                 createMySqlCommand.ExecuteNonQuery();
                             }
                         }
@@ -900,7 +899,7 @@ namespace TraditionalToSimplified
                                 }
                                 else
                                 {
-                                    Console.WriteLine("DB:DB_EVENT_TW TABLE: my_partnar_category_tw 中欄位值為NULL 資料PK值為: " + myData.GetString(0));
+                                    Console.WriteLine("DB:DB_EVENT_TW TABLE: my_partnar_category_tw 中欄位值為NULL 資料PK為: " + myData.GetString(0));
                                 }
                                 if (!myData.IsDBNull(2))
                                 {
@@ -909,7 +908,7 @@ namespace TraditionalToSimplified
                                 }
                                 else
                                 {
-                                    Console.WriteLine("DB:DB_EVENT_TW TABLE: my_partnar_category_tw 中欄位值為NULL 資料PK值為: " + myData.GetString(0));
+                                    Console.WriteLine("DB:DB_EVENT_TW TABLE: my_partnar_category_tw 中欄位值為NULL 資料PK為: " + myData.GetString(0));
                                 }
 
                                 twList.Add(modelData);
