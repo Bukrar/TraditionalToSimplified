@@ -1,13 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.VisualBasic;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Web;
 
 namespace TraditionalToSimplified
 {
@@ -2203,7 +2198,7 @@ namespace TraditionalToSimplified
                     {
                         try
                         {
-                            Model.My_Topic_Tw my_Category_Tw = new Model.My_Topic_Tw();
+                            Model.My_Topic_Tw my_Topic_Tw = new Model.My_Topic_Tw();
                             Db_Tw_SqlConnection.Open();
                             using (MySqlCommand mySqlCommand =
                                new MySqlCommand("SELECT * FROM DB_TW.my_topic_tw WHERE " +
@@ -2214,14 +2209,14 @@ namespace TraditionalToSimplified
                                 MySqlDataReader myData = mySqlCommand.ExecuteReader();
                                 while (myData.Read())
                                 {
-                                    my_Category_Tw.Topic_ID = myData.GetString(0);
-                                    my_Category_Tw.Topic_Name_TW = utility.Big5ToGb18030(myData.GetString(1));
-                                    my_Category_Tw.Topic_Intro_TW = utility.Big5ToGb18030(myData.GetString(2));
-                                    my_Category_Tw.Topic_DisplayFlag = myData.GetInt32(3);
-                                    my_Category_Tw.Topic_Sort_Order = myData.GetInt32(4);
-                                    my_Category_Tw.Topic_report = myData.GetInt32(5);
-                                    my_Category_Tw.Topic_newsletter = myData.GetInt32(6);
-                                    my_Category_Tw.Topic_annual = myData.GetInt32(7);
+                                    my_Topic_Tw.Topic_ID = myData.GetString(0);
+                                    my_Topic_Tw.Topic_Name_TW = utility.Big5ToGb18030(myData.GetString(1));
+                                    my_Topic_Tw.Topic_Intro_TW = utility.Big5ToGb18030(myData.GetString(2));
+                                    my_Topic_Tw.Topic_DisplayFlag = myData.GetInt32(3);
+                                    my_Topic_Tw.Topic_Sort_Order = myData.GetInt32(4);
+                                    my_Topic_Tw.Topic_report = myData.GetInt32(5);
+                                    my_Topic_Tw.Topic_newsletter = myData.GetInt32(6);
+                                    my_Topic_Tw.Topic_annual = myData.GetInt32(7);
                                 }
                             }
                             Db_Tw_SqlConnection.Close();
@@ -2233,14 +2228,14 @@ namespace TraditionalToSimplified
                                          " VALUES (@Topic_ID,@Topic_Name_TW,@Topic_Intro_TW,@Topic_DisplayFlag,@Topic_Sort_Order,@Topic_report,@Topic_newsletter,@Topic_annual);"
                                          , Db_Cn_SqlConnection))
                             {
-                                createMySqlCommand.Parameters.AddWithValue("@Topic_ID", my_Category_Tw.Topic_ID);
-                                createMySqlCommand.Parameters.AddWithValue("@Topic_Name_TW", my_Category_Tw.Topic_Name_TW);
-                                createMySqlCommand.Parameters.AddWithValue("@Topic_Intro_TW", my_Category_Tw.Topic_Intro_TW);
-                                createMySqlCommand.Parameters.AddWithValue("@Topic_DisplayFlag", my_Category_Tw.Topic_DisplayFlag);
-                                createMySqlCommand.Parameters.AddWithValue("@Topic_Sort_Order", my_Category_Tw.Topic_Sort_Order);
-                                createMySqlCommand.Parameters.AddWithValue("@Topic_report", my_Category_Tw.Topic_report);
-                                createMySqlCommand.Parameters.AddWithValue("@Topic_newsletter", my_Category_Tw.Topic_newsletter);
-                                createMySqlCommand.Parameters.AddWithValue("@Topic_annual", my_Category_Tw.Topic_annual);
+                                createMySqlCommand.Parameters.AddWithValue("@Topic_ID", my_Topic_Tw.Topic_ID);
+                                createMySqlCommand.Parameters.AddWithValue("@Topic_Name_TW", my_Topic_Tw.Topic_Name_TW);
+                                createMySqlCommand.Parameters.AddWithValue("@Topic_Intro_TW", my_Topic_Tw.Topic_Intro_TW);
+                                createMySqlCommand.Parameters.AddWithValue("@Topic_DisplayFlag", my_Topic_Tw.Topic_DisplayFlag);
+                                createMySqlCommand.Parameters.AddWithValue("@Topic_Sort_Order", my_Topic_Tw.Topic_Sort_Order);
+                                createMySqlCommand.Parameters.AddWithValue("@Topic_report", my_Topic_Tw.Topic_report);
+                                createMySqlCommand.Parameters.AddWithValue("@Topic_newsletter", my_Topic_Tw.Topic_newsletter);
+                                createMySqlCommand.Parameters.AddWithValue("@Topic_annual", my_Topic_Tw.Topic_annual);
                                 createMySqlCommand.ExecuteNonQuery();
                             }
                         }

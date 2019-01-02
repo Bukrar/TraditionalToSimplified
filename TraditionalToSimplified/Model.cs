@@ -141,19 +141,45 @@ namespace TraditionalToSimplified
         {
             public string Code { get; set; }
             public string Name { get; set; }
+            public string File { get; set; }
+            public int Sort { get; set; }
+            public int Count { get; set; }
         }
 
         public class My_Event_Press_Tw
         {
-            public string Press_SEQ { get; set; }
+            public int Press_SEQ { get; set; }
+            public string Press_Type { get; set; }
+            public DateTime Press_Date { get; set; }
+            public string Press_File { get; set; }
             public string Press_Title { get; set; }
             public string Press_Content { get; set; }
+            public int Press_On { get; set; }
+            public int Press_Prod_ID { get; set; }
+            public string Press_Prod_Title { get; set; }
+            public string Press_Prod_Category { get; set; }
+            public int Press_Prod_Discon { get; set; }
+            public string Press_Pub_Code { get; set; }
+            public string Press_Pub_Name { get; set; }
+            public DateTime Event_Start_Date { get; set; }
+            public DateTime Event_End_Date { get; set; }
+            public string Event_Venue { get; set; }
+            public string Event_Country { get; set; }
+            public int Prod_WEB_OnOff { get; set; }
+            public string Prod_WEB_URL { get; set; }
+            public int Prod_WEB_JP { get; set; }
+            public int Prod_WEB_EN { get; set; }
+            public int Prod_WEB_TW { get; set; }
+            public int Prod_WEB_KR { get; set; }
+            public DateTime Update { get; set; }
         }
 
         public class My_Event_Region_Tw
         {
             public string Code { get; set; }
             public string Name { get; set; }
+            public int Count { get; set; }
+            public int PCount { get; set; }
         }
 
         public class My_Partnar_Category_Tw
@@ -161,6 +187,11 @@ namespace TraditionalToSimplified
             public string Code { get; set; }
             public string Name { get; set; }
             public string Title { get; set; }
+            public string File { get; set; }
+            public string WCon { get; set; }
+            public int Count { get; set; }
+            public int Sort { get; set; }
+
         }
     }
 }
