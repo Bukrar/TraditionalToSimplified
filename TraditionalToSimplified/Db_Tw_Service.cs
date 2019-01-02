@@ -61,6 +61,10 @@ namespace TraditionalToSimplified
                     {
                         while (myData.Read())
                         {
+                            //PK 存入twDbPkList
+                            string datapk = myData.GetString(0);
+                            twDbPkList.Add(datapk);
+
                             if (!myData.IsDBNull(1))
                             {
                                 string pk = myData.GetString(0);
@@ -74,10 +78,6 @@ namespace TraditionalToSimplified
                                 string data = modelData.Category_ID + ";" + modelData.Category_Name_TW;
                                 string encodeData = utility.Encode(data);
                                 decodeTwDbDataList.Add(encodeData);
-
-                                //PK 存入twDbPkList
-                                string datapk = modelData.Category_ID;
-                                twDbPkList.Add(datapk);
                             }
                             else
                             {
@@ -321,6 +321,10 @@ namespace TraditionalToSimplified
                     {
                         while (myData.Read())
                         {
+                            //PK 存入twDbPkList
+                            string datapk = myData.GetString(0);
+                            twDbPkList.Add(datapk);
+
                             if (!myData.IsDBNull(1))
                             {
                                 string pk = myData.GetString(0);
@@ -334,10 +338,6 @@ namespace TraditionalToSimplified
                                 string data = modelData.Country_ID + ";" + modelData.Country_Name_TW;
                                 string encodeData = utility.Encode(data);
                                 decodeTwDbDataList.Add(encodeData);
-
-                                //PK 存入twDbPkList
-                                string datapk = modelData.Country_ID;
-                                twDbPkList.Add(datapk);
                             }
                             else
                             {
@@ -576,6 +576,10 @@ namespace TraditionalToSimplified
                     {
                         while (myData.Read())
                         {
+                            //PK 存入twDbPkList
+                            int datapk = myData.GetInt32(0);
+                            twDbPkList.Add(datapk);
+
                             if (!myData.IsDBNull(1))
                             {
                                 int pk = myData.GetInt32(0);
@@ -589,10 +593,6 @@ namespace TraditionalToSimplified
                                 string data = modelData.Press_SEQ + ";" + modelData.Press_Title;
                                 string encodeData = utility.Encode(data);
                                 decodeTwDbDataList.Add(encodeData);
-
-                                //PK 存入twDbPkList
-                                int datapk = modelData.Press_SEQ;
-                                twDbPkList.Add(datapk);
                             }
                             else
                             {
@@ -872,6 +872,10 @@ namespace TraditionalToSimplified
                     {
                         while (myData.Read())
                         {
+                            //PK 存入twDbPkList
+                            int datapk = myData.GetInt32(0);
+                            twDbPkList.Add(datapk);
+
                             if (!myData.IsDBNull(1))
                             {
                                 int pk = myData.GetInt32(0);
@@ -886,9 +890,7 @@ namespace TraditionalToSimplified
                                 string encodeData = utility.Encode(data);
                                 decodeTwDbDataList.Add(encodeData);
 
-                                //PK 存入twDbPkList
-                                int datapk = modelData.Prod_ID;
-                                twDbPkList.Add(datapk);
+
                             }
                             else
                             {
@@ -1137,32 +1139,32 @@ namespace TraditionalToSimplified
                                 createMySqlCommand.Parameters.AddWithValue("@Prod_Type", my_product_tw.Prod_Type);
                                 createMySqlCommand.Parameters.AddWithValue("@Prod_TypeCode", my_product_tw.Prod_TypeCode);
                                 createMySqlCommand.Parameters.AddWithValue("@Prod_Category", my_product_tw.Prod_Category);
-                                createMySqlCommand.Parameters.AddWithValue("@@Prod_MainCategory", my_product_tw.Prod_MainCategory);
-                                createMySqlCommand.Parameters.AddWithValue("@@Prod_Topic", my_product_tw.Prod_Topic);
-                                createMySqlCommand.Parameters.AddWithValue("@@Prod_SubTopic", my_product_tw.Prod_SubTopic);
-                                createMySqlCommand.Parameters.AddWithValue("@@Prod_Country", my_product_tw.Prod_Country);
-                                createMySqlCommand.Parameters.AddWithValue("@@Prod_ID_Pub", my_product_tw.Prod_ID_Pub);
-                                createMySqlCommand.Parameters.AddWithValue("@@Prod_Pub_ID", my_product_tw.Prod_Pub_ID);
-                                createMySqlCommand.Parameters.AddWithValue("@@Prod_PubDate", my_product_tw.Prod_PubDate);
-                                createMySqlCommand.Parameters.AddWithValue("@@Prod_File", my_product_tw.Prod_File);
-                                createMySqlCommand.Parameters.AddWithValue("@@Prod_SampleFile", my_product_tw.Prod_SampleFile);
-                                createMySqlCommand.Parameters.AddWithValue("@@Prod_BrowseNG_Flg", my_product_tw.Prod_BrowseNG_Flg);
-                                createMySqlCommand.Parameters.AddWithValue("@@Prod_FullRepLink_Flg", my_product_tw.Prod_FullRepLink_Flg);
-                                createMySqlCommand.Parameters.AddWithValue("@@Prod_Intro_TW", my_product_tw.Prod_Intro_TW);
-                                createMySqlCommand.Parameters.AddWithValue("@@Prod_Update", my_product_tw.Prod_Update);
-                                createMySqlCommand.Parameters.AddWithValue("@@Prod_CurrencyCode", my_product_tw.Prod_CurrencyCode);
-                                createMySqlCommand.Parameters.AddWithValue("@@Prod_LowPrice", my_product_tw.Prod_LowPrice);
-                                createMySqlCommand.Parameters.AddWithValue("@@Prod_BeforePrice", my_product_tw.Prod_BeforePrice);
-                                createMySqlCommand.Parameters.AddWithValue("@@Prod_ContentInfo", my_product_tw.Prod_ContentInfo);
-                                createMySqlCommand.Parameters.AddWithValue("@@Prod_Related_ID", my_product_tw.Prod_Related_ID);
-                                createMySqlCommand.Parameters.AddWithValue("@@Prod_Related_Keywords", my_product_tw.Prod_Related_Keywords);
-                                createMySqlCommand.Parameters.AddWithValue("@@Prod_IssueFrequency", my_product_tw.Prod_IssueFrequency);
-                                createMySqlCommand.Parameters.AddWithValue("@@Prod_PrePub", my_product_tw.Prod_PrePub);
-                                createMySqlCommand.Parameters.AddWithValue("@@Prod_CoverImage", my_product_tw.Prod_CoverImage);
-                                createMySqlCommand.Parameters.AddWithValue("@@Prod_WhatsNew", my_product_tw.Prod_WhatsNew);
-                                createMySqlCommand.Parameters.AddWithValue("@@Prod_Link_EN", my_product_tw.Prod_Link_EN);
-                                createMySqlCommand.Parameters.AddWithValue("@@Prod_Link_JP", my_product_tw.Prod_Link_JP);
-                                createMySqlCommand.Parameters.AddWithValue("@@Prod_Link_KR", my_product_tw.Prod_Link_KR);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_MainCategory", my_product_tw.Prod_MainCategory);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_Topic", my_product_tw.Prod_Topic);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_SubTopic", my_product_tw.Prod_SubTopic);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_Country", my_product_tw.Prod_Country);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_ID_Pub", my_product_tw.Prod_ID_Pub);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_Pub_ID", my_product_tw.Prod_Pub_ID);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_PubDate", my_product_tw.Prod_PubDate);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_File", my_product_tw.Prod_File);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_SampleFile", my_product_tw.Prod_SampleFile);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_BrowseNG_Flg", my_product_tw.Prod_BrowseNG_Flg);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_FullRepLink_Flg", my_product_tw.Prod_FullRepLink_Flg);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_Intro_TW", my_product_tw.Prod_Intro_TW);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_Update", my_product_tw.Prod_Update);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_CurrencyCode", my_product_tw.Prod_CurrencyCode);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_LowPrice", my_product_tw.Prod_LowPrice);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_BeforePrice", my_product_tw.Prod_BeforePrice);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_ContentInfo", my_product_tw.Prod_ContentInfo);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_Related_ID", my_product_tw.Prod_Related_ID);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_Related_Keywords", my_product_tw.Prod_Related_Keywords);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_IssueFrequency", my_product_tw.Prod_IssueFrequency);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_PrePub", my_product_tw.Prod_PrePub);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_CoverImage", my_product_tw.Prod_CoverImage);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_WhatsNew", my_product_tw.Prod_WhatsNew);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_Link_EN", my_product_tw.Prod_Link_EN);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_Link_JP", my_product_tw.Prod_Link_JP);
+                                createMySqlCommand.Parameters.AddWithValue("@Prod_Link_KR", my_product_tw.Prod_Link_KR);
                                 createMySqlCommand.ExecuteNonQuery();
                             }
                         }
@@ -1203,12 +1205,17 @@ namespace TraditionalToSimplified
 
         public void UpdateTableMy_Publisher_Tw()
         {
-            Console.WriteLine("處理Db_Tw資料庫 資料表:my_publisher_tw中...");
+            Console.WriteLine("處理Db_Tw資料庫 資料表:my_publisher_tw...");
             //呼叫json資源
             var configuration = Utility.GetJson();
 
-            List<Model.My_Publisher_Tw> modelList = new List<Model.My_Publisher_Tw>();
-
+            List<Model.My_Publisher_Tw> twList = new List<Model.My_Publisher_Tw>();
+            List<string> decodeLastDataList = new List<string>();
+            List<string> decodeTwDbDataList = new List<string>();
+            List<string> cnDbPkList = new List<string>();
+            List<string> twDbPkList = new List<string>();
+            List<string> needUpdateData = new List<string>();
+            List<string> needDeleteData = new List<string>();
             //連接繁體資料庫
             MySqlConnection Db_Tw_SqlConnection = new MySqlConnection(configuration.GetSection("db:0:connectString").Value);
             try
@@ -1228,7 +1235,7 @@ namespace TraditionalToSimplified
                 }
             }
 
-            //DB資料DECODE 繁體=>簡體 在ENCODE編碼在更新資料庫
+            //讀取TW資料庫
             try
             {
                 using (MySqlCommand mySqlCommand =
@@ -1239,32 +1246,38 @@ namespace TraditionalToSimplified
                     {
                         Console.WriteLine("No data.");
                     }
-
                     else
                     {
                         while (myData.Read())
                         {
+                            //PK 存入twDbPkList
+                            string datapk = myData.GetString(0);
+                            twDbPkList.Add(datapk);
+
                             if (!myData.IsDBNull(1))
                             {
                                 string pk = myData.GetString(0);
-                                string traditionalContent = HttpUtility.UrlDecode(myData.GetString(1), Encoding.GetEncoding("big5"));
-                                string simplifiedContent = utility.ToSimplified(traditionalContent, "ToSimplified");
-                                string simplifiedEncodeContent = HttpUtility.UrlEncode(simplifiedContent, Encoding.GetEncoding("gb18030"));
-
+                                string simplifiedEncodeContent = utility.Big5ToGb18030(myData.GetString(1));
                                 Model.My_Publisher_Tw modelData = new Model.My_Publisher_Tw();
                                 modelData.Pub_ID = pk;
                                 modelData.Pub_Intro_TW = simplifiedEncodeContent;
-                                modelList.Add(modelData);
+                                twList.Add(modelData);
+
+                                //加密存進decodeDbDataList
+                                string data = modelData.Pub_ID + ";" + modelData.Pub_Intro_TW;
+                                string encodeData = utility.Encode(data);
+                                decodeTwDbDataList.Add(encodeData);
                             }
                             else
                             {
                                 Console.WriteLine("DB:DB_TW TABLE: my_publisher_tw 中欄位值為NULL 資料PK值為: " + myData.GetString(0));
                             }
                         }
+
                     }
                 }
-
                 Db_Tw_SqlConnection.Close();
+
                 //連接簡體資料庫
                 MySqlConnection Db_Cn_SqlConnection = new MySqlConnection(configuration.GetSection("db:2:connectString").Value);
                 try
@@ -1284,21 +1297,196 @@ namespace TraditionalToSimplified
                     }
                 }
 
-                foreach (var s in modelList)
+                //讀取CN資料庫
+                using (MySqlCommand mySqlCommand =
+                  new MySqlCommand("SELECT Pub_ID,Pub_Intro_TW FROM DB_CN.my_publisher_tw", Db_Cn_SqlConnection))
                 {
-                    using (MySqlCommand updatMySqlCommand =
-                         new MySqlCommand("update " + configuration.GetSection("db:2:dbname").Value +
-                                         "." + configuration.GetSection("db:2:tables:my_publisher_tw").Key +
-                                         " set " + configuration.GetSection("db:2:tables:my_publisher_tw:1").Value +
-                                         "= @Pub_Intro_TW WHERE " + configuration.GetSection("db:2:tables:my_publisher_tw:0").Value +
-                                         "= @Pub_ID", Db_Cn_SqlConnection))
+                    MySqlDataReader myData = mySqlCommand.ExecuteReader();
+                    if (!myData.HasRows)
                     {
-                        updatMySqlCommand.Parameters.AddWithValue("@Pub_Intro_TW", s.Pub_Intro_TW);
-                        updatMySqlCommand.Parameters.AddWithValue("@Pub_ID", s.Pub_ID);
-                        updatMySqlCommand.ExecuteNonQuery();
+                        Console.WriteLine("No data.");
+                    }
+                    else
+                    {
+                        while (myData.Read())
+                        {
+                            string pk = myData.GetString(0);
+                            cnDbPkList.Add(pk);
+                        }
+                    }
+                }
+
+                //讀取TXT進decodeLastDataList
+                if (File.Exists(Directory.GetCurrentDirectory() + "/HashData/My_Publisher_Tw.txt"))
+                {
+                    StreamReader sr = new StreamReader(Directory.GetCurrentDirectory() + "/HashData/My_Publisher_Tw.txt");
+                    while (!sr.EndOfStream)
+                    {
+                        string line = sr.ReadLine();
+                        decodeLastDataList.Add(line);
+                    }
+                    sr.Close();
+                }
+
+                //對比資料
+                needUpdateData = decodeTwDbDataList.Except(decodeLastDataList).ToList();
+                needDeleteData = cnDbPkList.Except(twDbPkList).ToList();
+
+                //刪除 簡體資料庫資料
+                foreach (var mustBeDelete in needDeleteData)
+                {
+                    try
+                    {
+                        using (MySqlCommand deleteMySqlCommand =
+                           new MySqlCommand("DELETE From " + configuration.GetSection("db:2:dbname").Value +
+                                             "." + configuration.GetSection("db:2:tables:my_publisher_tw").Key +
+                                            " WHERE " + configuration.GetSection("db:2:tables:my_publisher_tw:0").Value +
+                                            "= @Pub_ID ", Db_Cn_SqlConnection))
+                        {
+                            deleteMySqlCommand.Parameters.AddWithValue("@Pub_ID", mustBeDelete);
+                            deleteMySqlCommand.ExecuteNonQuery();
+                        }
+                    }
+                    catch (MySqlException ex)
+                    {
+                        Console.WriteLine("刪除資料庫資料異常: " + ex.Message);
+                    }
+                }
+
+                //修改簡體資料庫              
+                foreach (var s in needUpdateData)
+                {
+                    string[] dataArray = utility.Decode(s).Split(';');
+
+                    //修改 簡體資料庫資料
+                    if (cnDbPkList.Contains(dataArray[0]))
+                    {
+                        try
+                        {
+                            using (
+                                MySqlCommand updatMySqlCommand =
+                           new MySqlCommand("update " + configuration.GetSection("db:2:dbname").Value +
+                                            "." + configuration.GetSection("db:2:tables:my_publisher_tw").Key +
+                                            " set " + configuration.GetSection("db:2:tables:my_publisher_tw:1").Value +
+                                            " = @Pub_Intro_TW WHERE " + configuration.GetSection("db:2:tables:my_publisher_tw:0").Value +
+                                            " = @Pub_ID ", Db_Cn_SqlConnection))
+                            {
+                                updatMySqlCommand.Parameters.AddWithValue("@Pub_ID", dataArray[0]);
+                                updatMySqlCommand.Parameters.AddWithValue("@Pub_Intro_TW", dataArray[1]);
+                                updatMySqlCommand.ExecuteNonQuery();
+                            }
+                        }
+                        catch (MySqlException ex)
+                        {
+                            Console.WriteLine("修改資料庫資料異常: " + ex.Message);
+                        }
+                    }
+
+                    //新增 簡體資料庫資料
+                    else
+                    {
+                        try
+                        {
+                            Model.My_Publisher_Tw my_publisher_tw = new Model.My_Publisher_Tw();
+                            Db_Tw_SqlConnection.Open();
+                            using (MySqlCommand mySqlCommand =
+                               new MySqlCommand("SELECT * FROM DB_TW.my_publisher_tw WHERE " +
+                                                configuration.GetSection("db:2:tables:my_publisher_tw:0").Value +
+                                                " = @Pub_ID", Db_Cn_SqlConnection))
+                            {
+                                mySqlCommand.Parameters.AddWithValue("@Pub_ID", dataArray[0]);
+                                MySqlDataReader myData = mySqlCommand.ExecuteReader();
+                                while (myData.Read())
+                                {
+                                    my_publisher_tw.Pub_ID = myData.GetString(0);
+                                    my_publisher_tw.Pub_Name = myData.GetString(1);
+                                    my_publisher_tw.Pub_Sample_Flg = myData.GetInt32(2);
+                                    my_publisher_tw.Pub_Browse_Flg = myData.GetInt32(3);
+                                    if (!myData.IsDBNull(4))
+                                    {
+                                        my_publisher_tw.Pub_Status = myData.GetString(4);
+                                    }
+                                    if (!myData.IsDBNull(5))
+                                    {
+                                        my_publisher_tw.Pub_ShippingRoute = myData.GetString(5);
+                                    }
+                                    my_publisher_tw.Pub_Organizer_Flg = myData.GetInt32(6);
+                                    my_publisher_tw.Pub_report = myData.GetInt32(7);
+                                    my_publisher_tw.Pub_annual = myData.GetInt32(8);
+                                    my_publisher_tw.Pub_newsletter = myData.GetInt32(9);
+                                    my_publisher_tw.Pub_Update = myData.GetDateTime(10);
+                                    if (!myData.IsDBNull(11))
+                                    {
+                                        my_publisher_tw.Pub_Intro_TW = utility.Big5ToGb18030(myData.GetString(11));
+                                    }
+                                    if (!myData.IsDBNull(12))
+                                    {
+                                        my_publisher_tw.Pub_Name_TW = myData.GetString(12);
+                                    }
+                                    my_publisher_tw.Pub_Exclusive_TW = myData.GetInt32(13);
+                                    my_publisher_tw.Pub_EN = myData.GetInt32(14);
+                                    my_publisher_tw.Pub_KR = myData.GetInt32(15);
+                                    my_publisher_tw.Pub_JP = myData.GetInt32(16);
+                                    my_publisher_tw.Pub_TW = myData.GetInt32(17);
+                                }
+                            }
+                            Db_Tw_SqlConnection.Close();
+
+                            using (MySqlCommand createMySqlCommand =
+                                  new MySqlCommand("INSERT INTO " + configuration.GetSection("db:2:dbname").Value +
+                                         "." + configuration.GetSection("db:2:tables:my_publisher_tw").Key +
+                                         "(Pub_ID,Pub_Name,Pub_Sample_Flg,Pub_Browse_Flg,Pub_Status,Pub_ShippingRoute,Pub_Organizer_Flg,Pub_report,Pub_annual,Pub_newsletter,Pub_Update,Pub_Intro_TW,Pub_Name_TW,Pub_Exclusive_TW,Pub_EN,Pub_KR,Pub_JP,Pub_TW)" +
+                                         "VALUES (@Pub_ID,@Pub_Name,@Pub_Sample_Flg,@Pub_Browse_Flg,@Pub_Status,@Pub_ShippingRoute,@Pub_Organizer_Flg,@Pub_report,@Pub_annual,@Pub_newsletter,@Pub_Update,@Pub_Intro_TW,@Pub_Name_TW,@Pub_Exclusive_TW,@Pub_EN,@Pub_KR,@Pub_JP,@Pub_TW);"
+                                         , Db_Cn_SqlConnection))
+                            {
+                                createMySqlCommand.Parameters.AddWithValue("@Pub_ID", my_publisher_tw.Pub_ID);
+                                createMySqlCommand.Parameters.AddWithValue("@Pub_Name", my_publisher_tw.Pub_Name);
+                                createMySqlCommand.Parameters.AddWithValue("@Pub_Sample_Flg", my_publisher_tw.Pub_Sample_Flg);
+                                createMySqlCommand.Parameters.AddWithValue("@Pub_Browse_Flg", my_publisher_tw.Pub_Browse_Flg);
+                                createMySqlCommand.Parameters.AddWithValue("@Pub_Status", my_publisher_tw.Pub_Status);
+                                createMySqlCommand.Parameters.AddWithValue("@Pub_ShippingRoute", my_publisher_tw.Pub_ShippingRoute);
+                                createMySqlCommand.Parameters.AddWithValue("@Pub_Organizer_Flg", my_publisher_tw.Pub_Organizer_Flg);
+                                createMySqlCommand.Parameters.AddWithValue("@Pub_report", my_publisher_tw.Pub_report);
+                                createMySqlCommand.Parameters.AddWithValue("@Pub_annual", my_publisher_tw.Pub_annual);
+                                createMySqlCommand.Parameters.AddWithValue("@Pub_newsletter", my_publisher_tw.Pub_newsletter);
+                                createMySqlCommand.Parameters.AddWithValue("@Pub_Update", my_publisher_tw.Pub_Update);
+                                createMySqlCommand.Parameters.AddWithValue("@Pub_Intro_TW", my_publisher_tw.Pub_Intro_TW);
+                                createMySqlCommand.Parameters.AddWithValue("@Pub_Name_TW", my_publisher_tw.Pub_Name_TW);
+                                createMySqlCommand.Parameters.AddWithValue("@Pub_Exclusive_TW", my_publisher_tw.Pub_Exclusive_TW);
+                                createMySqlCommand.Parameters.AddWithValue("@Pub_EN", my_publisher_tw.Pub_EN);
+                                createMySqlCommand.Parameters.AddWithValue("@Pub_KR", my_publisher_tw.Pub_KR);
+                                createMySqlCommand.Parameters.AddWithValue("@Pub_JP", my_publisher_tw.Pub_JP);
+                                createMySqlCommand.Parameters.AddWithValue("@Pub_TW", my_publisher_tw.Pub_TW);
+                                createMySqlCommand.ExecuteNonQuery();
+                            }
+                        }
+                        catch (MySqlException ex)
+                        {
+                            Console.WriteLine("新增資料庫資料異常: " + ex.Message);
+                        }
                     }
                 }
                 Db_Cn_SqlConnection.Close();
+
+
+                //寫入Db_Tw資料進.txt檔案
+                if (!Directory.Exists(Directory.GetCurrentDirectory() + "/HashData"))
+                {
+                    Directory.CreateDirectory(Directory.GetCurrentDirectory() + "/HashData");
+                }
+                if (!File.Exists(Directory.GetCurrentDirectory() + "/HashData/My_Publisher_Tw.txt"))
+                {
+                    FileStream fs = File.Create(Directory.GetCurrentDirectory() + "/HashData/My_Publisher_Tw.txt");
+                    fs.Close();
+                }
+                StreamWriter sw = new StreamWriter(Directory.GetCurrentDirectory() + "/HashData/My_Publisher_Tw.txt");
+                foreach (var a in twList)
+                {
+                    string data = a.Pub_ID + ";" + a.Pub_Intro_TW;
+                    string encodeData = utility.Encode(data);
+                    sw.WriteLine(encodeData);
+                }
+                sw.Close();
                 Console.WriteLine("Db_Tw資料庫 資料表:my_publisher_tw 資料處理完成");
             }
             catch (MySqlException ex)
@@ -1309,12 +1497,17 @@ namespace TraditionalToSimplified
 
         public void UpdateTableMy_Region_Tw()
         {
-            Console.WriteLine("處理Db_Tw資料庫 資料表:my_region_tw中...");
+            Console.WriteLine("處理Db_Tw資料庫 資料表:my_region_tw...");
             //呼叫json資源
             var configuration = Utility.GetJson();
 
-            List<Model.My_Region_Tw> modelList = new List<Model.My_Region_Tw>();
-
+            List<Model.My_Region_Tw> twList = new List<Model.My_Region_Tw>();
+            List<string> decodeLastDataList = new List<string>();
+            List<string> decodeTwDbDataList = new List<string>();
+            List<string> cnDbPkList = new List<string>();
+            List<string> twDbPkList = new List<string>();
+            List<string> needUpdateData = new List<string>();
+            List<string> needDeleteData = new List<string>();
             //連接繁體資料庫
             MySqlConnection Db_Tw_SqlConnection = new MySqlConnection(configuration.GetSection("db:0:connectString").Value);
             try
@@ -1334,7 +1527,7 @@ namespace TraditionalToSimplified
                 }
             }
 
-            //DB資料DECODE 繁體=>簡體 在ENCODE編碼在更新資料庫
+            //讀取TW資料庫
             try
             {
                 using (MySqlCommand mySqlCommand =
@@ -1349,27 +1542,34 @@ namespace TraditionalToSimplified
                     {
                         while (myData.Read())
                         {
+                            //PK 存入twDbPkList
+                            string datapk = myData.GetString(0);
+                            twDbPkList.Add(datapk);
+
                             if (!myData.IsDBNull(1))
                             {
                                 string pk = myData.GetString(0);
-                                string traditionalContent = HttpUtility.UrlDecode(myData.GetString(1), Encoding.GetEncoding("big5"));
-                                string simplifiedContent = utility.ToSimplified(traditionalContent, "ToSimplified");
-                                string simplifiedEncodeContent = HttpUtility.UrlEncode(simplifiedContent, Encoding.GetEncoding("gb18030"));
-
+                                string simplifiedEncodeContent = utility.Big5ToGb18030(myData.GetString(1));
                                 Model.My_Region_Tw modelData = new Model.My_Region_Tw();
                                 modelData.Region_ID = pk;
                                 modelData.Region_Name_TW = simplifiedEncodeContent;
-                                modelList.Add(modelData);
+                                twList.Add(modelData);
+
+                                //加密存進decodeDbDataList
+                                string data = modelData.Region_ID + ";" + modelData.Region_Name_TW;
+                                string encodeData = utility.Encode(data);
+                                decodeTwDbDataList.Add(encodeData);
                             }
                             else
                             {
                                 Console.WriteLine("DB:DB_TW TABLE: my_region_tw 中欄位值為NULL 資料PK值為: " + myData.GetString(0));
                             }
                         }
+
                     }
                 }
-
                 Db_Tw_SqlConnection.Close();
+
                 //連接簡體資料庫
                 MySqlConnection Db_Cn_SqlConnection = new MySqlConnection(configuration.GetSection("db:2:connectString").Value);
                 try
@@ -1389,21 +1589,159 @@ namespace TraditionalToSimplified
                     }
                 }
 
-                foreach (var s in modelList)
+                //讀取CN資料庫
+                using (MySqlCommand mySqlCommand =
+                  new MySqlCommand("SELECT Region_ID,Region_Name_TW FROM DB_CN.my_region_tw", Db_Cn_SqlConnection))
                 {
-                    using (MySqlCommand updatMySqlCommand =
-                           new MySqlCommand("update " + configuration.GetSection("db:2:dbname").Value +
-                                         "." + configuration.GetSection("db:2:tables:my_region_tw").Key +
-                                         " set " + configuration.GetSection("db:2:tables:my_region_tw:1").Value +
-                                         "= @Region_Name_TW WHERE " + configuration.GetSection("db:2:tables:my_region_tw:0").Value +
-                                         "= @Region_ID", Db_Cn_SqlConnection))
+                    MySqlDataReader myData = mySqlCommand.ExecuteReader();
+                    if (!myData.HasRows)
                     {
-                        updatMySqlCommand.Parameters.AddWithValue("@Region_Name_TW", s.Region_Name_TW);
-                        updatMySqlCommand.Parameters.AddWithValue("@Region_ID", s.Region_ID);
-                        updatMySqlCommand.ExecuteNonQuery();
+                        Console.WriteLine("No data.");
+                    }
+                    else
+                    {
+                        while (myData.Read())
+                        {
+                            string pk = myData.GetString(0);
+                            cnDbPkList.Add(pk);
+                        }
+                    }
+                }
+
+                //讀取TXT進decodeLastDataList
+                if (File.Exists(Directory.GetCurrentDirectory() + "/HashData/My_Region_Tw.txt"))
+                {
+                    StreamReader sr = new StreamReader(Directory.GetCurrentDirectory() + "/HashData/My_Region_Tw.txt");
+                    while (!sr.EndOfStream)
+                    {
+                        string line = sr.ReadLine();
+                        decodeLastDataList.Add(line);
+                    }
+                    sr.Close();
+                }
+
+                //對比資料
+                needUpdateData = decodeTwDbDataList.Except(decodeLastDataList).ToList();
+                needDeleteData = cnDbPkList.Except(twDbPkList).ToList();
+
+                //刪除 簡體資料庫資料
+                foreach (var mustBeDelete in needDeleteData)
+                {
+                    try
+                    {
+                        using (MySqlCommand deleteMySqlCommand =
+                       new MySqlCommand("DELETE From " + configuration.GetSection("db:2:dbname").Value +
+                                         "." + configuration.GetSection("db:2:tables:my_region_tw").Key +
+                                        " WHERE " + configuration.GetSection("db:2:tables:my_region_tw:0").Value +
+                                        "= @Region_ID ", Db_Cn_SqlConnection))
+                        {
+                            deleteMySqlCommand.Parameters.AddWithValue("@Region_ID", mustBeDelete);
+                            deleteMySqlCommand.ExecuteNonQuery();
+                        }
+                    }
+                    catch (MySqlException ex)
+                    {
+                        Console.WriteLine("刪除資料庫資料異常: " + ex.Message);
+                    }
+
+                }
+
+                //修改簡體資料庫              
+                foreach (var s in needUpdateData)
+                {
+                    string[] dataArray = utility.Decode(s).Split(';');
+
+                    //修改 簡體資料庫資料
+                    if (cnDbPkList.Contains(dataArray[0]))
+                    {
+                        try
+                        {
+                            using (
+                                MySqlCommand updatMySqlCommand =
+                           new MySqlCommand("update " + configuration.GetSection("db:2:dbname").Value +
+                                            "." + configuration.GetSection("db:2:tables:my_region_tw").Key +
+                                            " set " + configuration.GetSection("db:2:tables:my_region_tw:1").Value +
+                                            " = @Region_Name_TW WHERE " + configuration.GetSection("db:2:tables:my_region_tw:0").Value +
+                                            " = @Region_ID ", Db_Cn_SqlConnection))
+                            {
+                                updatMySqlCommand.Parameters.AddWithValue("@Region_ID", dataArray[0]);
+                                updatMySqlCommand.Parameters.AddWithValue("@Region_Name_TW", dataArray[1]);
+                                updatMySqlCommand.ExecuteNonQuery();
+                            }
+                        }
+                        catch (MySqlException ex)
+                        {
+                            Console.WriteLine("修改資料庫資料異常: " + ex.Message);
+                        }
+                    }
+
+                    //新增 簡體資料庫資料
+                    else
+                    {
+                        try
+                        {
+                            Model.My_Region_Tw my_region_tw = new Model.My_Region_Tw();
+                            Db_Tw_SqlConnection.Open();
+                            using (MySqlCommand mySqlCommand =
+                               new MySqlCommand("SELECT * FROM DB_TW.my_region_tw WHERE " +
+                                                configuration.GetSection("db:2:tables:my_region_tw:0").Value +
+                                                " = @Region_ID", Db_Cn_SqlConnection))
+                            {
+                                mySqlCommand.Parameters.AddWithValue("@Region_ID", dataArray[0]);
+                                MySqlDataReader myData = mySqlCommand.ExecuteReader();
+                                while (myData.Read())
+                                {
+                                    my_region_tw.Region_ID = myData.GetString(0);
+                                    my_region_tw.Region_Name_TW = utility.Big5ToGb18030(myData.GetString(1));
+                                    my_region_tw.Region_report = myData.GetInt32(2);
+                                    my_region_tw.Region_annual = myData.GetInt32(3);
+                                    my_region_tw.Region_newsletter = myData.GetInt32(4);
+                                }
+                            }
+                            Db_Tw_SqlConnection.Close();
+
+                            using (MySqlCommand createMySqlCommand =
+                                  new MySqlCommand("INSERT INTO " + configuration.GetSection("db:2:dbname").Value +
+                                         "." + configuration.GetSection("db:2:tables:my_region_tw").Key +
+                                         "(Region_ID,Region_Name_TW,Region_report,Region_annual,Region_newsletter)" +
+                                         "VALUES (@Region_ID,@Region_Name_TW,@Region_report,@Region_annual,@Region_newsletter);"
+                                         , Db_Cn_SqlConnection))
+                            {
+                                createMySqlCommand.Parameters.AddWithValue("@Region_ID", my_region_tw.Region_ID);
+                                createMySqlCommand.Parameters.AddWithValue("@Region_Name_TW", my_region_tw.Region_Name_TW);
+                                createMySqlCommand.Parameters.AddWithValue("@Region_report", my_region_tw.Region_report);
+                                createMySqlCommand.Parameters.AddWithValue("@Region_annual", my_region_tw.Region_annual);
+                                createMySqlCommand.Parameters.AddWithValue("@Region_newsletter", my_region_tw.Region_newsletter);
+                                createMySqlCommand.ExecuteNonQuery();
+                            }
+                        }
+                        catch (MySqlException ex)
+                        {
+                            Console.WriteLine("新增資料庫資料異常: " + ex.Message);
+                        }
                     }
                 }
                 Db_Cn_SqlConnection.Close();
+
+
+                //寫入Db_Tw資料進.txt檔案
+                if (!Directory.Exists(Directory.GetCurrentDirectory() + "/HashData"))
+                {
+                    Directory.CreateDirectory(Directory.GetCurrentDirectory() + "/HashData");
+                }
+                if (!File.Exists(Directory.GetCurrentDirectory() + "/HashData/My_Region_Tw.txt"))
+                {
+                    FileStream fs = File.Create(Directory.GetCurrentDirectory() + "/HashData/My_Region_Tw.txt");
+                    fs.Close();
+                }
+                StreamWriter sw = new StreamWriter(Directory.GetCurrentDirectory() + "/HashData/My_Region_Tw.txt");
+                foreach (var a in twList)
+                {
+                    string data = a.Region_ID + ";" + a.Region_Name_TW;
+                    string encodeData = utility.Encode(data);
+                    sw.WriteLine(encodeData);
+                }
+                sw.Close();
                 Console.WriteLine("Db_Tw資料庫 資料表:my_region_tw 資料處理完成");
             }
             catch (MySqlException ex)
@@ -1414,12 +1752,17 @@ namespace TraditionalToSimplified
 
         public void UpdateTableMy_Subtopic_Tw()
         {
-            Console.WriteLine("處理Db_Tw資料庫 資料表:my_subtopic_tw中...");
+            Console.WriteLine("處理Db_Tw資料庫 資料表:my_subtopic_tw...");
             //呼叫json資源
             var configuration = Utility.GetJson();
 
-            List<Model.My_Subtopic_Tw> modelList = new List<Model.My_Subtopic_Tw>();
-
+            List<Model.My_Subtopic_Tw> twList = new List<Model.My_Subtopic_Tw>();
+            List<string> decodeLastDataList = new List<string>();
+            List<string> decodeTwDbDataList = new List<string>();
+            List<string> cnDbPkList = new List<string>();
+            List<string> twDbPkList = new List<string>();
+            List<string> needUpdateData = new List<string>();
+            List<string> needDeleteData = new List<string>();
             //連接繁體資料庫
             MySqlConnection Db_Tw_SqlConnection = new MySqlConnection(configuration.GetSection("db:0:connectString").Value);
             try
@@ -1439,7 +1782,7 @@ namespace TraditionalToSimplified
                 }
             }
 
-            //DB資料DECODE 繁體=>簡體 在ENCODE編碼在更新資料庫
+            //讀取TW資料庫
             try
             {
                 using (MySqlCommand mySqlCommand =
@@ -1454,27 +1797,34 @@ namespace TraditionalToSimplified
                     {
                         while (myData.Read())
                         {
+                            //PK 存入twDbPkList
+                            string datapk = myData.GetString(0);
+                            twDbPkList.Add(datapk);
+
                             if (!myData.IsDBNull(1))
                             {
                                 string pk = myData.GetString(0);
-                                string traditionalContent = HttpUtility.UrlDecode(myData.GetString(1), Encoding.GetEncoding("big5"));
-                                string simplifiedContent = utility.ToSimplified(traditionalContent, "ToSimplified");
-                                string simplifiedEncodeContent = HttpUtility.UrlEncode(simplifiedContent, Encoding.GetEncoding("gb18030"));
-
+                                string simplifiedEncodeContent = utility.Big5ToGb18030(myData.GetString(1));
                                 Model.My_Subtopic_Tw modelData = new Model.My_Subtopic_Tw();
                                 modelData.SubTopic_ID = pk;
                                 modelData.SubTopic_Name_TW = simplifiedEncodeContent;
-                                modelList.Add(modelData);
+                                twList.Add(modelData);
+
+                                //加密存進decodeDbDataList
+                                string data = modelData.SubTopic_ID + ";" + modelData.SubTopic_Name_TW;
+                                string encodeData = utility.Encode(data);
+                                decodeTwDbDataList.Add(encodeData);
                             }
                             else
                             {
                                 Console.WriteLine("DB:DB_TW TABLE: my_subtopic_tw 中欄位值為NULL 資料PK值為: " + myData.GetString(0));
                             }
                         }
+
                     }
                 }
-
                 Db_Tw_SqlConnection.Close();
+
                 //連接簡體資料庫
                 MySqlConnection Db_Cn_SqlConnection = new MySqlConnection(configuration.GetSection("db:2:connectString").Value);
                 try
@@ -1494,21 +1844,163 @@ namespace TraditionalToSimplified
                     }
                 }
 
-                foreach (var s in modelList)
+                //讀取CN資料庫
+                using (MySqlCommand mySqlCommand =
+                  new MySqlCommand("SELECT SubTopic_ID,SubTopic_Name_TW FROM DB_CN.my_subtopic_tw", Db_Cn_SqlConnection))
                 {
-                    using (MySqlCommand updatMySqlCommand =
-                        new MySqlCommand("update " + configuration.GetSection("db:2:dbname").Value +
-                                         "." + configuration.GetSection("db:2:tables:my_subtopic_tw").Key +
-                                         " set " + configuration.GetSection("db:2:tables:my_subtopic_tw:1").Value +
-                                         "= @SubTopic_Name_TW WHERE " + configuration.GetSection("db:2:tables:my_subtopic_tw:0").Value +
-                                         "= @SubTopic_ID", Db_Cn_SqlConnection))
+                    MySqlDataReader myData = mySqlCommand.ExecuteReader();
+                    if (!myData.HasRows)
                     {
-                        updatMySqlCommand.Parameters.AddWithValue("@SubTopic_Name_TW", s.SubTopic_Name_TW);
-                        updatMySqlCommand.Parameters.AddWithValue("@SubTopic_ID", s.SubTopic_ID);
-                        updatMySqlCommand.ExecuteNonQuery();
+                        Console.WriteLine("No data.");
+                    }
+                    else
+                    {
+                        while (myData.Read())
+                        {
+                            string pk = myData.GetString(0);
+                            cnDbPkList.Add(pk);
+                        }
+                    }
+                }
+
+                //讀取TXT進decodeLastDataList
+                if (File.Exists(Directory.GetCurrentDirectory() + "/HashData/My_Subtopic_Tw.txt"))
+                {
+                    StreamReader sr = new StreamReader(Directory.GetCurrentDirectory() + "/HashData/My_Subtopic_Tw.txt");
+                    while (!sr.EndOfStream)
+                    {
+                        string line = sr.ReadLine();
+                        decodeLastDataList.Add(line);
+                    }
+                    sr.Close();
+                }
+
+                //對比資料
+                needUpdateData = decodeTwDbDataList.Except(decodeLastDataList).ToList();
+                needDeleteData = cnDbPkList.Except(twDbPkList).ToList();
+
+                //刪除 簡體資料庫資料
+                foreach (var mustBeDelete in needDeleteData)
+                {
+                    try
+                    {
+                        using (MySqlCommand deleteMySqlCommand =
+                       new MySqlCommand("DELETE From " + configuration.GetSection("db:2:dbname").Value +
+                                         "." + configuration.GetSection("db:2:tables:my_subtopic_tw").Key +
+                                        " WHERE " + configuration.GetSection("db:2:tables:my_subtopic_tw:0").Value +
+                                        "= @SubTopic_ID ", Db_Cn_SqlConnection))
+                        {
+                            deleteMySqlCommand.Parameters.AddWithValue("@SubTopic_ID", mustBeDelete);
+                            deleteMySqlCommand.ExecuteNonQuery();
+                        }
+                    }
+                    catch (MySqlException ex)
+                    {
+                        Console.WriteLine("刪除資料庫資料異常: " + ex.Message);
+                    }
+
+                }
+
+                //修改簡體資料庫              
+                foreach (var s in needUpdateData)
+                {
+                    string[] dataArray = utility.Decode(s).Split(';');
+
+                    //修改 簡體資料庫資料
+                    if (cnDbPkList.Contains(dataArray[0]))
+                    {
+                        try
+                        {
+                            using (
+                                MySqlCommand updatMySqlCommand =
+                           new MySqlCommand("update " + configuration.GetSection("db:2:dbname").Value +
+                                            "." + configuration.GetSection("db:2:tables:my_subtopic_tw").Key +
+                                            " set " + configuration.GetSection("db:2:tables:my_subtopic_tw:1").Value +
+                                            " = @SubTopic_Name_TW WHERE " + configuration.GetSection("db:2:tables:my_subtopic_tw:0").Value +
+                                            " = @SubTopic_ID ", Db_Cn_SqlConnection))
+                            {
+                                updatMySqlCommand.Parameters.AddWithValue("@SubTopic_ID", dataArray[0]);
+                                updatMySqlCommand.Parameters.AddWithValue("@SubTopic_Name_TW", dataArray[1]);
+                                updatMySqlCommand.ExecuteNonQuery();
+                            }
+                        }
+                        catch (MySqlException ex)
+                        {
+                            Console.WriteLine("修改資料庫資料異常: " + ex.Message);
+                        }
+                    }
+
+                    //新增 簡體資料庫資料
+                    else
+                    {
+                        try
+                        {
+                            Model.My_Subtopic_Tw my_subtopic_tw = new Model.My_Subtopic_Tw();
+                            Db_Tw_SqlConnection.Open();
+                            using (MySqlCommand mySqlCommand =
+                               new MySqlCommand("SELECT * FROM DB_TW.my_subtopic_tw WHERE " +
+                                                configuration.GetSection("db:2:tables:my_subtopic_tw:0").Value +
+                                                " = @SubTopic_ID", Db_Cn_SqlConnection))
+                            {
+                                mySqlCommand.Parameters.AddWithValue("@SubTopic_ID", dataArray[0]);
+                                MySqlDataReader myData = mySqlCommand.ExecuteReader();
+                                while (myData.Read())
+                                {
+                                    my_subtopic_tw.SubTopic_ID = myData.GetString(0);
+                                    my_subtopic_tw.SubTopic_Name_TW = utility.Big5ToGb18030(myData.GetString(1));
+                                    my_subtopic_tw.SubTopic_Intro_TW = myData.GetString(2);
+                                    my_subtopic_tw.SubTopic_Topic_ID = myData.GetString(3);
+                                    my_subtopic_tw.SubTopic_report = myData.GetInt32(4);
+                                    my_subtopic_tw.SubTopic_newsletter = myData.GetInt32(5);
+                                    my_subtopic_tw.SubTopic_annual = myData.GetInt32(6);
+                                }
+                            }
+                            Db_Tw_SqlConnection.Close();
+
+                            using (MySqlCommand createMySqlCommand =
+                                  new MySqlCommand("INSERT INTO " + configuration.GetSection("db:2:dbname").Value +
+                                         "." + configuration.GetSection("db:2:tables:my_subtopic_tw").Key +
+                                         "(SubTopic_ID,SubTopic_Name_TW,SubTopic_Intro_TW,SubTopic_Topic_ID,SubTopic_report,SubTopic_newsletter,SubTopic_annual)" +
+                                         "VALUES (@SubTopic_ID,@SubTopic_Name_TW,@SubTopic_Intro_TW,@SubTopic_Topic_ID,@SubTopic_report,@SubTopic_newsletter,@SubTopic_annual);"
+                                         , Db_Cn_SqlConnection))
+                            {
+                                createMySqlCommand.Parameters.AddWithValue("@SubTopic_ID", my_subtopic_tw.SubTopic_ID);
+                                createMySqlCommand.Parameters.AddWithValue("@SubTopic_Name_TW", my_subtopic_tw.SubTopic_Name_TW);
+                                createMySqlCommand.Parameters.AddWithValue("@SubTopic_Intro_TW", my_subtopic_tw.SubTopic_Intro_TW);
+                                createMySqlCommand.Parameters.AddWithValue("@SubTopic_Topic_ID", my_subtopic_tw.SubTopic_Topic_ID);
+                                createMySqlCommand.Parameters.AddWithValue("@SubTopic_report", my_subtopic_tw.SubTopic_report);
+                                createMySqlCommand.Parameters.AddWithValue("@SubTopic_newsletter", my_subtopic_tw.SubTopic_newsletter);
+                                createMySqlCommand.Parameters.AddWithValue("@SubTopic_annual", my_subtopic_tw.SubTopic_annual);
+                                createMySqlCommand.ExecuteNonQuery();
+                            }
+                        }
+                        catch (MySqlException ex)
+                        {
+                            Console.WriteLine("新增資料庫資料異常: " + ex.Message);
+                        }
                     }
                 }
                 Db_Cn_SqlConnection.Close();
+
+
+                //寫入Db_Tw資料進.txt檔案
+                if (!Directory.Exists(Directory.GetCurrentDirectory() + "/HashData"))
+                {
+                    Directory.CreateDirectory(Directory.GetCurrentDirectory() + "/HashData");
+                }
+                if (!File.Exists(Directory.GetCurrentDirectory() + "/HashData/My_Subtopic_Tw.txt"))
+                {
+                    FileStream fs = File.Create(Directory.GetCurrentDirectory() + "/HashData/My_Subtopic_Tw.txt");
+                    fs.Close();
+                }
+                StreamWriter sw = new StreamWriter(Directory.GetCurrentDirectory() + "/HashData/My_Subtopic_Tw.txt");
+                foreach (var a in twList)
+                {
+                    string data = a.SubTopic_ID + ";" + a.SubTopic_Name_TW;
+                    string encodeData = utility.Encode(data);
+                    sw.WriteLine(encodeData);
+                }
+                sw.Close();
                 Console.WriteLine("Db_Tw資料庫 資料表:my_subtopic_tw 資料處理完成");
             }
             catch (MySqlException ex)
@@ -1519,12 +2011,17 @@ namespace TraditionalToSimplified
 
         public void UpdateTableMy_Topic_Tw()
         {
-            Console.WriteLine("處理Db_Tw資料庫 資料表:my_topic_tw中...");
+            Console.WriteLine("處理Db_Tw資料庫 資料表:my_topic_tw...");
             //呼叫json資源
             var configuration = Utility.GetJson();
 
-            List<Model.My_Topic_Tw> modelList = new List<Model.My_Topic_Tw>();
-
+            List<Model.My_Topic_Tw> twList = new List<Model.My_Topic_Tw>();
+            List<string> decodeLastDataList = new List<string>();
+            List<string> decodeTwDbDataList = new List<string>();
+            List<string> cnDbPkList = new List<string>();
+            List<string> twDbPkList = new List<string>();
+            List<string> needUpdateData = new List<string>();
+            List<string> needDeleteData = new List<string>();
             //連接繁體資料庫
             MySqlConnection Db_Tw_SqlConnection = new MySqlConnection(configuration.GetSection("db:0:connectString").Value);
             try
@@ -1544,11 +2041,11 @@ namespace TraditionalToSimplified
                 }
             }
 
-            //DB資料DECODE 繁體=>簡體 在ENCODE編碼在更新資料庫
+            //讀取TW資料庫
             try
             {
                 using (MySqlCommand mySqlCommand =
-                    new MySqlCommand("SELECT Topic_ID,Topic_Intro_TW,Topic_Name_TW FROM DB_TW.my_topic_tw", Db_Tw_SqlConnection))
+                    new MySqlCommand("SELECT Topic_ID,Topic_Name_TW,Topic_Intro_TW FROM DB_TW.my_topic_tw", Db_Tw_SqlConnection))
                 {
                     MySqlDataReader myData = mySqlCommand.ExecuteReader();
                     if (!myData.HasRows)
@@ -1559,40 +2056,42 @@ namespace TraditionalToSimplified
                     {
                         while (myData.Read())
                         {
+                            Model.My_Topic_Tw modelData = new Model.My_Topic_Tw();
                             string pk = myData.GetString(0);
-                            string traditionalIntroContent, simplifiedIntroContent, simplifiedEncodeIntroContent = null;
-                            string traditionalNameContent, simplifiedNameContent, simplifiedEncodeNameContent = null;
+                            modelData.Topic_ID = pk;
+                            //PK 存入twDbPkList
+                            string datapk = myData.GetString(0);
+                            twDbPkList.Add(datapk);
                             if (!myData.IsDBNull(1))
                             {
-                                traditionalIntroContent = HttpUtility.UrlDecode(myData.GetString(1), Encoding.GetEncoding("big5"));
-                                simplifiedIntroContent = utility.ToSimplified(traditionalIntroContent, "ToSimplified");
-                                simplifiedEncodeIntroContent = HttpUtility.UrlEncode(simplifiedIntroContent, Encoding.GetEncoding("gb18030"));
+                                string simplifiedEncodeContentName = utility.Big5ToGb18030(myData.GetString(1));
+                                modelData.Topic_Name_TW = simplifiedEncodeContentName;
+                            }
+                            else
+                            {
+                                Console.WriteLine("DB:DB_TW TABLE: my_topic_tw 中欄位值為NULL 資料PK值為: " + myData.GetString(0));
+                            }
+                            if (!myData.IsDBNull(2))
+                            {
+                                string simplifiedEncodeContent = utility.Big5ToGb18030(myData.GetString(2));
+                                modelData.Topic_Intro_TW = simplifiedEncodeContent;
                             }
                             else
                             {
                                 Console.WriteLine("DB:DB_TW TABLE: my_topic_tw 中欄位值為NULL 資料PK值為: " + myData.GetString(0));
                             }
 
-                            if (!myData.IsDBNull(2))
-                            {
-                                traditionalNameContent = HttpUtility.UrlDecode(myData.GetString(2), Encoding.GetEncoding("big5"));
-                                simplifiedNameContent = utility.ToSimplified(traditionalNameContent, "ToSimplified");
-                                simplifiedEncodeNameContent = HttpUtility.UrlEncode(simplifiedNameContent, Encoding.GetEncoding("gb18030"));
-                            }
-                            else
-                            {
-                                Console.WriteLine("DB:DB_TW TABLE: my_topic_tw 中欄位值為NULL 資料PK值為: " + myData.GetString(0));
-                            }
-                            Model.My_Topic_Tw modelData = new Model.My_Topic_Tw();
-                            modelData.Topic_ID = pk;
-                            modelData.Topic_Intro_TW = simplifiedEncodeIntroContent;
-                            modelData.Topic_Name_TW = simplifiedEncodeNameContent;
-                            modelList.Add(modelData);
+                            twList.Add(modelData);
+
+                            //加密存進decodeDbDataList
+                            string data = modelData.Topic_ID + ";" + modelData.Topic_Name_TW + ";" + modelData.Topic_Intro_TW;
+                            string encodeData = utility.Encode(data);
+                            decodeTwDbDataList.Add(encodeData);
                         }
                     }
                 }
-
                 Db_Tw_SqlConnection.Close();
+
                 //連接簡體資料庫
                 MySqlConnection Db_Cn_SqlConnection = new MySqlConnection(configuration.GetSection("db:2:connectString").Value);
                 try
@@ -1612,24 +2111,167 @@ namespace TraditionalToSimplified
                     }
                 }
 
-                foreach (var s in modelList)
+                //讀取CN資料庫
+                using (MySqlCommand mySqlCommand =
+                  new MySqlCommand("SELECT Topic_ID,Topic_Name_TW,Topic_Intro_TW FROM DB_CN.my_topic_tw", Db_Cn_SqlConnection))
                 {
-                    using (MySqlCommand updatMySqlCommand =
-                         new MySqlCommand("update " + configuration.GetSection("db:2:dbname").Value +
-                                         "." + configuration.GetSection("db:2:tables:my_topic_tw").Key +
-                                         " set " + configuration.GetSection("db:2:tables:my_topic_tw:1").Value +
-                                         "= @Topic_Intro_TW," + configuration.GetSection("db:2:tables:my_topic_tw:2").Value +
-                                         "= @Topic_Name_TW WHERE " + configuration.GetSection("db:2:tables:my_topic_tw:0").Value +
-                                         "= @Topic_ID", Db_Cn_SqlConnection))
+                    MySqlDataReader myData = mySqlCommand.ExecuteReader();
+                    if (!myData.HasRows)
                     {
-                        updatMySqlCommand.Parameters.AddWithValue("@Topic_Intro_TW", s.Topic_Intro_TW);
-                        updatMySqlCommand.Parameters.AddWithValue("@Topic_Name_TW", s.Topic_Name_TW);
-                        updatMySqlCommand.Parameters.AddWithValue("@Topic_ID", s.Topic_ID);
-                        updatMySqlCommand.ExecuteNonQuery();
+                        Console.WriteLine("No data.");
+                    }
+                    else
+                    {
+                        while (myData.Read())
+                        {
+                            string pk = myData.GetString(0);
+                            cnDbPkList.Add(pk);
+                        }
+                    }
+                }
+
+                //讀取TXT進decodeLastDataList
+                if (File.Exists(Directory.GetCurrentDirectory() + "/HashData/My_Topic_Tw.txt"))
+                {
+                    StreamReader sr = new StreamReader(Directory.GetCurrentDirectory() + "/HashData/My_Topic_Tw.txt");
+                    while (!sr.EndOfStream)
+                    {
+                        string line = sr.ReadLine();
+                        decodeLastDataList.Add(line);
+                    }
+                    sr.Close();
+                }
+
+                //對比資料
+                needUpdateData = decodeTwDbDataList.Except(decodeLastDataList).ToList();
+                needDeleteData = cnDbPkList.Except(twDbPkList).ToList();
+
+                //刪除 簡體資料庫資料
+                foreach (var mustBeDelete in needDeleteData)
+                {
+                    try
+                    {
+                        using (MySqlCommand deleteMySqlCommand =
+                           new MySqlCommand("DELETE From " + configuration.GetSection("db:2:dbname").Value +
+                                             "." + configuration.GetSection("db:2:tables:my_topic_tw").Key +
+                                            " WHERE " + configuration.GetSection("db:2:tables:my_topic_tw:0").Value +
+                                            "= @Topic_ID ", Db_Cn_SqlConnection))
+                        {
+                            deleteMySqlCommand.Parameters.AddWithValue("@Topic_ID", mustBeDelete);
+                            deleteMySqlCommand.ExecuteNonQuery();
+                        }
+                    }
+                    catch (MySqlException ex)
+                    {
+                        Console.WriteLine("刪除資料庫資料異常: " + ex.Message);
+                    }
+                }
+
+                //修改簡體資料庫              
+                foreach (var s in needUpdateData)
+                {
+                    string[] dataArray = utility.Decode(s).Split(';');
+
+                    //修改 簡體資料庫資料
+                    if (cnDbPkList.Contains(dataArray[0]))
+                    {
+                        try
+                        {
+                            using (
+                            MySqlCommand updatMySqlCommand =
+                       new MySqlCommand("update " + configuration.GetSection("db:2:dbname").Value +
+                                        "." + configuration.GetSection("db:2:tables:my_topic_tw").Key +
+                                        " set " + configuration.GetSection("db:2:tables:my_topic_tw:1").Value +
+                                        " = @Topic_Name_TW ," + configuration.GetSection("db:2:tables:my_topic_tw:2").Value +
+                                        " = @Topic_Intro_TW WHERE " + configuration.GetSection("db:2:tables:my_topic_tw:0").Value +
+                                        " = @Topic_ID ", Db_Cn_SqlConnection))
+                            {
+                                updatMySqlCommand.Parameters.AddWithValue("@Topic_ID", dataArray[0]);
+                                updatMySqlCommand.Parameters.AddWithValue("@Topic_Name_TW", dataArray[1]);
+                                updatMySqlCommand.Parameters.AddWithValue("@Topic_Intro_TW", dataArray[2]);
+                                updatMySqlCommand.ExecuteNonQuery();
+                            }
+                        }
+                        catch (MySqlException ex)
+                        {
+                            Console.WriteLine("修改資料庫資料異常: " + ex.Message);
+                        }
+                    }
+
+                    //新增 簡體資料庫資料
+                    else
+                    {
+                        try
+                        {
+                            Model.My_Topic_Tw my_Category_Tw = new Model.My_Topic_Tw();
+                            Db_Tw_SqlConnection.Open();
+                            using (MySqlCommand mySqlCommand =
+                               new MySqlCommand("SELECT * FROM DB_TW.my_topic_tw WHERE " +
+                                                configuration.GetSection("db:2:tables:my_topic_tw:0").Value +
+                                                " = @Topic_ID", Db_Cn_SqlConnection))
+                            {
+                                mySqlCommand.Parameters.AddWithValue("@Topic_ID", dataArray[0]);
+                                MySqlDataReader myData = mySqlCommand.ExecuteReader();
+                                while (myData.Read())
+                                {
+                                    my_Category_Tw.Topic_ID = myData.GetString(0);
+                                    my_Category_Tw.Topic_Name_TW = utility.Big5ToGb18030(myData.GetString(1));
+                                    my_Category_Tw.Topic_Intro_TW = utility.Big5ToGb18030(myData.GetString(2));
+                                    my_Category_Tw.Topic_DisplayFlag = myData.GetInt32(3);
+                                    my_Category_Tw.Topic_Sort_Order = myData.GetInt32(4);
+                                    my_Category_Tw.Topic_report = myData.GetInt32(5);
+                                    my_Category_Tw.Topic_newsletter = myData.GetInt32(6);
+                                    my_Category_Tw.Topic_annual = myData.GetInt32(7);
+                                }
+                            }
+                            Db_Tw_SqlConnection.Close();
+
+                            using (MySqlCommand createMySqlCommand =
+                                  new MySqlCommand("INSERT INTO " + configuration.GetSection("db:2:dbname").Value +
+                                         "." + configuration.GetSection("db:2:tables:my_topic_tw").Key +
+                                         "(Topic_ID,Topic_Name_TW,Topic_Intro_TW,Topic_DisplayFlag,Topic_Sort_Order,Topic_report,Topic_newsletter,Topic_annual)" +
+                                         " VALUES (@Topic_ID,@Topic_Name_TW,@Topic_Intro_TW,@Topic_DisplayFlag,@Topic_Sort_Order,@Topic_report,@Topic_newsletter,@Topic_annual);"
+                                         , Db_Cn_SqlConnection))
+                            {
+                                createMySqlCommand.Parameters.AddWithValue("@Topic_ID", my_Category_Tw.Topic_ID);
+                                createMySqlCommand.Parameters.AddWithValue("@Topic_Name_TW", my_Category_Tw.Topic_Name_TW);
+                                createMySqlCommand.Parameters.AddWithValue("@Topic_Intro_TW", my_Category_Tw.Topic_Intro_TW);
+                                createMySqlCommand.Parameters.AddWithValue("@Topic_DisplayFlag", my_Category_Tw.Topic_DisplayFlag);
+                                createMySqlCommand.Parameters.AddWithValue("@Topic_Sort_Order", my_Category_Tw.Topic_Sort_Order);
+                                createMySqlCommand.Parameters.AddWithValue("@Topic_report", my_Category_Tw.Topic_report);
+                                createMySqlCommand.Parameters.AddWithValue("@Topic_newsletter", my_Category_Tw.Topic_newsletter);
+                                createMySqlCommand.Parameters.AddWithValue("@Topic_annual", my_Category_Tw.Topic_annual);
+                                createMySqlCommand.ExecuteNonQuery();
+                            }
+                        }
+                        catch (MySqlException ex)
+                        {
+                            Console.WriteLine("新增資料庫資料異常: " + ex.Message);
+                        }
                     }
                 }
                 Db_Cn_SqlConnection.Close();
-                Console.WriteLine("Db_Tw資料庫 資料表:my_subtopic_tw 資料處理完成");
+
+
+                //寫入Db_Tw資料進.txt檔案
+                if (!Directory.Exists(Directory.GetCurrentDirectory() + "/HashData"))
+                {
+                    Directory.CreateDirectory(Directory.GetCurrentDirectory() + "/HashData");
+                }
+                if (!File.Exists(Directory.GetCurrentDirectory() + "/HashData/My_Topic_Tw.txt"))
+                {
+                    FileStream fs = File.Create(Directory.GetCurrentDirectory() + "/HashData/My_Topic_Tw.txt");
+                    fs.Close();
+                }
+                StreamWriter sw = new StreamWriter(Directory.GetCurrentDirectory() + "/HashData/My_Topic_Tw.txt");
+                foreach (var a in twList)
+                {
+                    string data = a.Topic_ID + ";" + a.Topic_Name_TW + ";" + a.Topic_Intro_TW;
+                    string encodeData = utility.Encode(data);
+                    sw.WriteLine(encodeData);
+                }
+                sw.Close();
+                Console.WriteLine("Db_Tw資料庫 資料表:my_topic_tw 資料處理完成");
             }
             catch (MySqlException ex)
             {

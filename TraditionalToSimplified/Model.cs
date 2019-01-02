@@ -86,19 +86,43 @@ namespace TraditionalToSimplified
         public class My_Publisher_Tw
         {
             public string Pub_ID { get; set; }
+            public string Pub_Name { get; set; }
+            public int Pub_Sample_Flg { get; set; }
+            public int Pub_Browse_Flg { get; set; }
+            public string Pub_Status { get; set; }
+            public string Pub_ShippingRoute { get; set; }
+            public int Pub_Organizer_Flg { get; set; }
+            public int Pub_report { get; set; }
+            public int Pub_annual { get; set; }
+            public int Pub_newsletter { get; set; }
+            public DateTime Pub_Update { get; set; }
             public string Pub_Intro_TW { get; set; }
+            public string Pub_Name_TW { get; set; }
+            public int Pub_Exclusive_TW { get; set; }
+            public int Pub_EN { get; set; }
+            public int Pub_KR { get; set; }
+            public int Pub_JP { get; set; }
+            public int Pub_TW { get; set; }
         }
 
         public class My_Region_Tw
         {
             public string Region_ID { get; set; }
             public string Region_Name_TW { get; set; }
+            public int Region_report { get; set; }
+            public int Region_annual { get; set; }
+            public int Region_newsletter { get; set; }
         }
 
         public class My_Subtopic_Tw
         {
             public string SubTopic_ID { get; set; }
             public string SubTopic_Name_TW { get; set; }
+            public string SubTopic_Intro_TW { get; set; }
+            public string SubTopic_Topic_ID { get; set; }
+            public int SubTopic_report { get; set; }
+            public int SubTopic_newsletter { get; set; }
+            public int SubTopic_annual { get; set; }
         }
 
         public class My_Topic_Tw
@@ -106,6 +130,11 @@ namespace TraditionalToSimplified
             public string Topic_ID { get; set; }
             public string Topic_Name_TW { get; set; }
             public string Topic_Intro_TW { get; set; }
+            public int Topic_DisplayFlag { get; set; }
+            public int Topic_Sort_Order { get; set; }
+            public int Topic_report { get; set; }
+            public int Topic_newsletter { get; set; }
+            public int Topic_annual { get; set; }
         }
 
         public class My_Event_Category_Tw
