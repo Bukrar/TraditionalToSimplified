@@ -38,21 +38,19 @@ namespace TraditionalToSimplified
             string cnTableName = cnDataArray[tablecount];
             string cnDbName = configuration.GetSection("db:" + cnDbCount + ":dbname").Value;
             string cnSelectTable = "";
+            string updateTable = "";
             for (int i = 1; i < cnDataArray.Length; i++)
             {
                 if (i == 1)
                 {
                     cnTablePkName = cnDataArray[i];
                 }
-                else
-                {
-                    cnSelectTable += cnDataArray[i] + ",";
-                }
+                cnSelectTable += cnDataArray[i] + ",";
+                updateTable += cnDataArray[i] + " = @" + cnDataArray[i];
             }
             string updateSql = "update " + cnDbName + "." + cnTableName +
-                                       " set " + cnSelectTable +
-                                       " = @Category_Name_TW " +
-                                       "WHERE " + cnTablePkName + " = @PkID ";
+                                       " set " + updateTable +
+                                       " WHERE " + cnTablePkName + " = @PkID ";
             cnSelectTable = cnSelectTable.TrimEnd(',');
 
             List<string> decodeLastDataList = new List<string>();
@@ -116,7 +114,7 @@ namespace TraditionalToSimplified
                                 else
                                 {
                                     //有可能需要編碼的欄位為NULL
-                                    if (myData.IsDBNull(count))
+                                    if (!myData.IsDBNull(count))
                                     {
                                         Dbdata += utility.Big5ToGb18030(myData.GetValue(count).ToString()) + ";";
                                         twDataArray[count] = Dbdata;
@@ -131,7 +129,7 @@ namespace TraditionalToSimplified
                                 }
                             }
 
-                            Dbdata.TrimEnd(',');
+                            Dbdata = Dbdata.TrimEnd(';');
                             string encodeData = utility.Encode(Dbdata);
                             decodeTwDbDataList.Add(encodeData);
                         }
@@ -230,7 +228,7 @@ namespace TraditionalToSimplified
                         {
                             using (
                             MySqlCommand updatMySqlCommand =
-                       new MySqlCommand(, Db_Cn_SqlConnection))
+                       new MySqlCommand(updateSql, Db_Cn_SqlConnection))
                             {
                                 updatMySqlCommand.Parameters.AddWithValue("@PkID", dataArray[0]);
                                 updatMySqlCommand.Parameters.AddWithValue("@Category_Name_TW", dataArray[1]);
