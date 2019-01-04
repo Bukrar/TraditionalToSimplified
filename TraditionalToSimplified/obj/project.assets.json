@@ -473,15 +473,6 @@
             "rid": "win"
           }
         }
-      },
-      "TraditionalChineseToSimplifiedConverter/1.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/ChineseConverter.dll": {}
-        },
-        "runtime": {
-          "lib/ChineseConverter.dll": {}
-        }
       }
     }
   },
@@ -1396,18 +1387,6 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
-    },
-    "TraditionalChineseToSimplifiedConverter/1.0.0": {
-      "sha512": "INP/vRN43kGSTHN6VXxjaOGOym7W0fopDMf6ZcIBi8wwVUjt3aphg0EfpJZmrDAffEpiBr82FzmkMZ1efa1PwA==",
-      "type": "package",
-      "path": "traditionalchinesetosimplifiedconverter/1.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/ChineseConverter.dll",
-        "traditionalchinesetosimplifiedconverter.1.0.0.nupkg.sha512",
-        "traditionalchinesetosimplifiedconverter.nuspec"
-      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -1416,8 +1395,7 @@
       "Microsoft.Extensions.Configuration.EnvironmentVariables >= 2.2.0",
       "Microsoft.Extensions.Configuration.Json >= 2.2.0",
       "Microsoft.NETCore.App >= 2.1.0",
-      "MySql.Data >= 8.0.13",
-      "TraditionalChineseToSimplifiedConverter >= 1.0.0"
+      "MySql.Data >= 8.0.13"
     ]
   },
   "packageFolders": {
@@ -1481,10 +1459,6 @@
           "MySql.Data": {
             "target": "Package",
             "version": "[8.0.13, )"
-          },
-          "TraditionalChineseToSimplifiedConverter": {
-            "target": "Package",
-            "version": "[1.0.0, )"
           }
         },
         "imports": [
@@ -1494,17 +1468,5 @@
         "warn": true
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "已使用 '.NETFramework,Version=v4.6.1' 而非專案目標架構 '.NETCoreApp,Version=v2.1' 還原了套件 'TraditionalChineseToSimplifiedConverter 1.0.0'。此套件與您的專案並非完全相容。",
-      "libraryId": "TraditionalChineseToSimplifiedConverter",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.1"
-      ]
-    }
-  ]
+  }
 }

@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "bf14862f617f5dd32663c3841b90e52af3e8ac52"
+    "signature": "698b1628c42547cacdd57c75181694e69785b322"
   },
   "compilationOptions": {},
   "targets": {
@@ -11,7 +11,8 @@
           "Microsoft.Extensions.Configuration": "2.2.0",
           "Microsoft.Extensions.Configuration.EnvironmentVariables": "2.2.0",
           "Microsoft.Extensions.Configuration.Json": "2.2.0",
-          "MySql.Data": "8.0.13"
+          "MySql.Data": "8.0.13",
+          "TraditionalChineseToSimplifiedConverter": "1.0.0"
         },
         "runtime": {
           "TraditionalToSimplified.dll": {}
@@ -237,6 +238,14 @@
             "fileVersion": "4.6.25519.3"
           }
         }
+      },
+      "TraditionalChineseToSimplifiedConverter/1.0.0": {
+        "runtime": {
+          "lib/ChineseConverter.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -385,6 +394,13 @@
       "sha512": "sha512-FpAgMC+BX6OOCiRebYqHP3r3aYU7o0lopPOo4zKyGc5LWXFEYRUaKtoXXvAJ3sP+IDOK/KBxZaiVAdi+QdZ0TA==",
       "path": "system.text.encoding.codepages/4.4.0",
       "hashPath": "system.text.encoding.codepages.4.4.0.nupkg.sha512"
+    },
+    "TraditionalChineseToSimplifiedConverter/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-INP/vRN43kGSTHN6VXxjaOGOym7W0fopDMf6ZcIBi8wwVUjt3aphg0EfpJZmrDAffEpiBr82FzmkMZ1efa1PwA==",
+      "path": "traditionalchinesetosimplifiedconverter/1.0.0",
+      "hashPath": "traditionalchinesetosimplifiedconverter.1.0.0.nupkg.sha512"
     }
   }
 }

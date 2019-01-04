@@ -10,7 +10,6 @@ namespace TraditionalToSimplified
         {
             public string Category_ID { get; set; }
             public string Category_Name_TW { get; set; }
-
             public string Category_File { get; set; }
             public int Category_Sort_Order { get; set; }
             public int Category_report { get; set; }

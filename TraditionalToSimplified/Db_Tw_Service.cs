@@ -11,7 +11,7 @@ namespace TraditionalToSimplified
         Utility utility = new Utility();
         public void UpdateTableMy_Category_Tw()
         {
-            Console.WriteLine("處理Db_Tw資料庫 資料表:my_category_tw中...");
+            Console.WriteLine("處理Db_Tw資料庫 資料表:my_category_tw...");
             //呼叫json資源
             var configuration = Utility.GetJson();
 
@@ -76,10 +76,9 @@ namespace TraditionalToSimplified
                             }
                             else
                             {
-                                Console.WriteLine("DB:DB_TW TABLE: my_category_tw 中欄位值為NULL 資料PK值為: " + myData.GetString(0));
+                                Console.WriteLine("DB:DB_TW TABLE: my_category_tw 中欄位值為NULL 資料PK為: " + myData.GetString(0));
                             }
                         }
-
                     }
                 }
                 Db_Tw_SqlConnection.Close();
@@ -271,7 +270,7 @@ namespace TraditionalToSimplified
 
         public void UpdateTableMy_Country_Tw()
         {
-            Console.WriteLine("處理Db_Tw資料庫 資料表:my_country_tw中...");
+            Console.WriteLine("處理Db_Tw資料庫 資料表:my_country_tw...");
             //呼叫json資源
             var configuration = Utility.GetJson();
 
@@ -336,7 +335,7 @@ namespace TraditionalToSimplified
                             }
                             else
                             {
-                                Console.WriteLine("DB:DB_TW TABLE: my_country_tw中 中欄位值為NULL 資料PK值為: " + myData.GetString(0));
+                                Console.WriteLine("DB:DB_TW TABLE: my_country_tw中 中欄位值為NULL 資料PK為: " + myData.GetString(0));
                             }
                         }
 
@@ -591,7 +590,7 @@ namespace TraditionalToSimplified
                             }
                             else
                             {
-                                Console.WriteLine("DB:DB_TW TABLE: my_press_tw 中欄位值為NULL 資料PK值為: " + myData.GetString(0));
+                                Console.WriteLine("DB:DB_TW TABLE: my_press_tw 中欄位值為NULL 資料PK為: " + myData.GetString(0));
                             }
                         }
 
@@ -889,7 +888,7 @@ namespace TraditionalToSimplified
                             }
                             else
                             {
-                                Console.WriteLine("DB:DB_TW TABLE: my_product_tw 中欄位值為NULL 資料PK值為: " + myData.GetString(0));
+                                Console.WriteLine("DB:DB_TW TABLE: my_product_tw 中欄位值為NULL 資料PK為: " + myData.GetString(0));
                             }
                         }
 
@@ -1265,7 +1264,7 @@ namespace TraditionalToSimplified
                             }
                             else
                             {
-                                Console.WriteLine("DB:DB_TW TABLE: my_publisher_tw 中欄位值為NULL 資料PK值為: " + myData.GetString(0));
+                                Console.WriteLine("DB:DB_TW TABLE: my_publisher_tw 中欄位值為NULL 資料PK為: " + myData.GetString(0));
                             }
                         }
 
@@ -1557,7 +1556,7 @@ namespace TraditionalToSimplified
                             }
                             else
                             {
-                                Console.WriteLine("DB:DB_TW TABLE: my_region_tw 中欄位值為NULL 資料PK值為: " + myData.GetString(0));
+                                Console.WriteLine("DB:DB_TW TABLE: my_region_tw 中欄位值為NULL 資料PK為: " + myData.GetString(0));
                             }
                         }
 
@@ -1812,7 +1811,7 @@ namespace TraditionalToSimplified
                             }
                             else
                             {
-                                Console.WriteLine("DB:DB_TW TABLE: my_subtopic_tw 中欄位值為NULL 資料PK值為: " + myData.GetString(0));
+                                Console.WriteLine("DB:DB_TW TABLE: my_subtopic_tw 中欄位值為NULL 資料PK為: " + myData.GetString(0));
                             }
                         }
 
@@ -2064,7 +2063,7 @@ namespace TraditionalToSimplified
                             }
                             else
                             {
-                                Console.WriteLine("DB:DB_TW TABLE: my_topic_tw 中欄位值為NULL 資料PK值為: " + myData.GetString(0));
+                                Console.WriteLine("DB:DB_TW TABLE: my_topic_tw 中欄位值為NULL 資料PK為: " + myData.GetString(0));
                             }
                             if (!myData.IsDBNull(2))
                             {
@@ -2073,7 +2072,7 @@ namespace TraditionalToSimplified
                             }
                             else
                             {
-                                Console.WriteLine("DB:DB_TW TABLE: my_topic_tw 中欄位值為NULL 資料PK值為: " + myData.GetString(0));
+                                Console.WriteLine("DB:DB_TW TABLE: my_topic_tw 中欄位值為NULL 資料PK為: " + myData.GetString(0));
                             }
 
                             twList.Add(modelData);
