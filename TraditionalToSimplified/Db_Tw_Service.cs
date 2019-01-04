@@ -45,7 +45,9 @@ namespace TraditionalToSimplified
             try
             {
                 using (MySqlCommand mySqlCommand =
-                    new MySqlCommand("SELECT Category_ID,Category_Name_TW FROM DB_TW.my_category_tw", Db_Tw_SqlConnection))
+                    new MySqlCommand("SELECT " + configuration.GetSection("db:0:tables:my_category_tw:0").Value + " FROM "
+                                               + configuration.GetSection("db:0:dbname").Value + "."
+                                               + configuration.GetSection("db:0:tables:my_category_tw").Key, Db_Tw_SqlConnection))
                 {
                     MySqlDataReader myData = mySqlCommand.ExecuteReader();
                     if (!myData.HasRows)
@@ -54,33 +56,71 @@ namespace TraditionalToSimplified
                     }
                     else
                     {
+                        string[] fieldArray = configuration.GetSection("db:0:tables:my_category_tw:0").Value.Split(',');
+
                         while (myData.Read())
                         {
+                            string test = myData.GetString(1);
+                            
+                            int count = 0;
+                            string Dbdata = "";
                             //PK 存入twDbPkList
-                            string datapk = myData.GetString(0);
-                            twDbPkList.Add(datapk);
-
-                            if (!myData.IsDBNull(1))
+                            foreach (var t in fieldArray)
                             {
-                                string pk = myData.GetString(0);
-                                string simplifiedEncodeContent = utility.Big5ToGb18030(myData.GetString(1));
-                                Model.My_Category_Tw modelData = new Model.My_Category_Tw();
-                                modelData.Category_ID = pk;
-                                modelData.Category_Name_TW = simplifiedEncodeContent;
-                                twList.Add(modelData);
+                                //JSON TABLE欄位設定為第一個一定是PK
+                                if (count == 0)
+                                {
+                                    twDbPkList.Add(myData.GetValue(count).ToString());
+                                    Dbdata += myData.GetValue(count) + ";";
+                                    fieldArray[count] = Dbdata;
+                                    count++;
+                                }
+                                else
+                                {
+                                    //有可能需要編碼的欄位為NULL
+                                    if (myData.IsDBNull(count))
+                                    {
+                                        Dbdata += utility.Big5ToGb18030(myData.GetValue(count).ToString()) + ";";
+                                        fieldArray[count] = Dbdata;
+                                        count++;
+                                    }
+                                    else
+                                    {
+                                        Dbdata += "";
+                                        fieldArray[count] = Dbdata;
+                                        count++;
+                                    }
+                                }
+                            }
 
-                                //加密存進decodeDbDataList
-                                string data = modelData.Category_ID + ";" + modelData.Category_Name_TW;
-                                string encodeData = utility.Encode(data);
-                                decodeTwDbDataList.Add(encodeData);
-                            }
-                            else
-                            {
-                                Console.WriteLine("DB:DB_TW TABLE: my_category_tw 中欄位值為NULL 資料PK為: " + myData.GetString(0));
-                            }
+                            Dbdata.TrimEnd(',');
+                            string encodeData = utility.Encode(Dbdata);
+                            decodeTwDbDataList.Add(encodeData);
+
+
+                            //string datapk = myData.GetString(0);
+                            //twDbPkList.Add(datapk);
+                            //if (!myData.IsDBNull(1))
+                            //{
+                            //    string pk = myData.GetString(0);
+                            //    string simplifiedEncodeContent = utility.Big5ToGb18030(myData.GetString(1));
+                            //    Model.My_Category_Tw modelData = new Model.My_Category_Tw();
+                            //    modelData.Category_ID = pk;
+                            //    modelData.Category_Name_TW = simplifiedEncodeContent;
+                            //    twList.Add(modelData);
+
+                            //    //加密存進decodeDbDataList
+                            //    string data = modelData.Category_ID + ";" + modelData.Category_Name_TW;
+                            //    string encodeData = utility.Encode(data);
+                            //    decodeTwDbDataList.Add(encodeData);
                         }
+                        //    else
+                        //    {
+                        //    Console.WriteLine("DB:DB_TW TABLE: my_category_tw 中欄位值為NULL 資料PK為: " + myData.GetString(0));
+                        //}
                     }
                 }
+
                 Db_Tw_SqlConnection.Close();
 
                 //連接簡體資料庫
@@ -104,7 +144,9 @@ namespace TraditionalToSimplified
 
                 //讀取CN資料庫
                 using (MySqlCommand mySqlCommand =
-                  new MySqlCommand("SELECT Category_ID,Category_Name_TW FROM DB_CN.my_category_tw", Db_Cn_SqlConnection))
+                  new MySqlCommand("SELECT " + configuration.GetSection("db:0:tables:my_category_tw:0").Value + " FROM "
+                                               + configuration.GetSection("db:2:dbname").Value + "."
+                                               + configuration.GetSection("db:0:tables:my_category_tw").Key, Db_Tw_SqlConnection))
                 {
                     MySqlDataReader myData = mySqlCommand.ExecuteReader();
                     if (!myData.HasRows)
@@ -172,7 +214,7 @@ namespace TraditionalToSimplified
                             MySqlCommand updatMySqlCommand =
                        new MySqlCommand("update " + configuration.GetSection("db:2:dbname").Value +
                                         "." + configuration.GetSection("db:2:tables:my_category_tw").Key +
-                                        " set " + configuration.GetSection("db:2:tables:my_category_tw:1").Value +
+                                        " set " + configuration.GetSection("db:2:tables:my_category_tw:0").Value +
                                         " = @Category_Name_TW WHERE " + configuration.GetSection("db:2:tables:my_category_tw:0").Value +
                                         " = @Category_ID ", Db_Cn_SqlConnection))
                             {

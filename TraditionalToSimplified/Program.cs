@@ -9,13 +9,14 @@ namespace TraditionalToSimplified
         {
             Db_Tw_Service db_Tw_Service = new Db_Tw_Service();
             Db_Event_Tw_Service db_Event_Tw_Service = new Db_Event_Tw_Service();
-
+            TESTDB dd = new TESTDB();
             //計時
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
 
+            dd.ch();
             //修改db_Tw至db_Cn資料庫
-            db_Tw_Service.UpdateTableMy_Category_Tw();
+            //db_Tw_Service.UpdateTableMy_Category_Tw();
             //db_Tw_Service.UpdateTableMy_Country_Tw();
             //db_Tw_Service.UpdateTableMy_Press_Tw();
             //db_Tw_Service.UpdateTableMy_Product_Tw();
