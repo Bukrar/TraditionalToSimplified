@@ -24,7 +24,6 @@ namespace TraditionalToSimplified
             String tTarget = new String(' ', SourceString.Length);
             int tReturn = LCMapString(LOCALE_SYSTEM_DEFAULT, LCMAP_SIMPLIFIED_CHINESE, SourceString, SourceString.Length, tTarget, SourceString.Length);
             return tTarget;
-
         }
 
         public static IConfigurationRoot GetJson()

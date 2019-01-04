@@ -10,38 +10,38 @@
         "my_topic_tw,Topic_ID,Topic_Name_TW,Topic_Intro_TW"
       ]
     },
-    {
-      "connectString": "server=127.0.0.1;uid=root;pwd=H1242457411qaz;database=db_tw",
-      "dbname": "DB_CN",
-      "tables": [
-        "my_category_tw,Category_ID,Category_Name_TW",
-        "my_country_tw,Country_ID,Country_Name_TW",
-        "my_topic_tw,Topic_ID,Topic_Name_TW,Topic_Intro_TW"
-      ]
-    },
-    {
-      "connectString": "server=127.0.0.1;uid=root;pwd=H1242457411qaz;database=db_event_tw",
-      "dbname": "DB_EVENT_TW",
-      "tables": {
-        "my_dataexchange_tw": [],
-        "my_event_calendar_tw": [],
-        "my_event_category_tw": [ "Code", "Name" ],
-        "my_event_press_tw": [ "Press_SEQ", "Press_Title", "Press_Content" ],
-        "my_event_region_tw": [ "Code", "Name" ],
-        "my_partnar_category_tw": [ "Code", "Name", "Title" ]
-      }
-    },
-    {
-      "connectString": "server=127.0.0.1;uid=root;pwd=H1242457411qaz;database=db_event_cn",
-      "dbname": "DB_EVENT_CN",
-      "tables": {
-        "my_dataexchange_tw": [],
-        "my_event_calendar_tw": [],
-        "my_event_category_tw": [ "Code", "Name" ],
-        "my_event_press_tw": [ "Press_SEQ", "Press_Title", "Press_Content" ],
-        "my_event_region_tw": [ "Code", "Name" ],
-        "my_partnar_category_tw": [ "Code", "Name", "Title" ]
-      }
-    }
+    //{
+    //  "connectString": "server=127.0.0.1;uid=root;pwd=H1242457411qaz;database=db_tw",
+    //  "dbname": "DB_CN",
+    //  "tables": [
+    //    "my_category_tw,Category_ID,Category_Name_TW",
+    //    "my_country_tw,Country_ID,Country_Name_TW",
+    //    "my_topic_tw,Topic_ID,Topic_Name_TW,Topic_Intro_TW"
+    //  ]
+    //},
+    //{
+    //  "connectString": "server=127.0.0.1;uid=root;pwd=H1242457411qaz;database=db_event_tw",
+    //  "dbname": "DB_EVENT_TW",
+    //  "tables": {
+    //    "my_dataexchange_tw": [],
+    //    "my_event_calendar_tw": [],
+    //    "my_event_category_tw": [ "Code", "Name" ],
+    //    "my_event_press_tw": [ "Press_SEQ", "Press_Title", "Press_Content" ],
+    //    "my_event_region_tw": [ "Code", "Name" ],
+    //    "my_partnar_category_tw": [ "Code", "Name", "Title" ]
+    //  }
+    //},
+    //{
+    //  "connectString": "server=127.0.0.1;uid=root;pwd=H1242457411qaz;database=db_event_cn",
+    //  "dbname": "DB_EVENT_CN",
+    //  "tables": {
+    //    "my_dataexchange_tw": [],
+    //    "my_event_calendar_tw": [],
+    //    "my_event_category_tw": [ "Code", "Name" ],
+    //    "my_event_press_tw": [ "Press_SEQ", "Press_Title", "Press_Content" ],
+    //    "my_event_region_tw": [ "Code", "Name" ],
+    //    "my_partnar_category_tw": [ "Code", "Name", "Title" ]
+    //  }
+    //}
   ]
 }
