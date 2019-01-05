@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -85,6 +86,8 @@ namespace TraditionalToSimplified
                     List<string> twDbPkList = new List<string>();
                     List<string> needUpdateData = new List<string>();
                     List<string> needDeleteData = new List<string>();
+
+                    Hashtable ht = new Hashtable();
                     //連接繁體資料庫
                     MySqlConnection Db_Tw_SqlConnection = new MySqlConnection(twDbConnection);
                     try
