@@ -21,16 +21,18 @@ namespace TraditionalToSimplified
 
             int tWDbCount = 0;
             int cnDbCount = 1;
-            int tablecount = 0;
+            
 
             for (int z = 0; z < dbCount; z = z + 2)
             {
-                var jsonTableArray = configuration.GetSection("db:" + z).GetChildren();
+                int tablecount = 0;
+                var jsonTableArray = configuration.GetSection("db:" + z + ":tables").GetChildren();
                 int tableCount = jsonTableArray.Count();
                 for (int y = 0; y < tableCount; y = y + 1)
                 {
                     //int ss = aa.Length;
                     // 讀取TWDB資料
+                    string qwqww = configuration.GetSection("db:" + tWDbCount + ":tables:" + tablecount).Value;
                     string[] twDataArray = configuration.GetSection("db:" + tWDbCount + ":tables:" + tablecount).Value.Split(',');
                     int selectNumber = twDataArray.Length - 1;
                     string twTablePkName = twDataArray[1];
